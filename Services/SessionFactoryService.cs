@@ -39,7 +39,7 @@ namespace HotelP.Services
         {
             try
             {
-                string connectionString = @"Server=(localdb)\mssqllocaldb; Database =TestDB; Trusted_Connection = True; User = Test; Password = hej";
+                string connectionString = ConfigurationManager.AppSettings["ConnectionString"];
 
                 return Fluently.Configure()
                      .Database(MsSqlConfiguration.MsSql2012

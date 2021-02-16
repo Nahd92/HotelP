@@ -1,5 +1,95 @@
-﻿INSERT INTO Customer(FirstName, LastName, EmailAddres, PhoneNumber,ContactPerson)
-VALUES('Jon','Snow','Jon@Snow.com','07088442288','Harry');
+﻿INSERT INTO Facilities(Name, Amount, Cost)
+VALUES('ExtraBeds', 1, 20);
 
-INSERT INTO UserLogins(UserName,Password, Roles)
-VALUES ('Admin','Newton21', 'Admin'),('Guest','Newton21','Guest')
+INSERT INTO Facilities(Name, Amount, Cost)
+VALUES('ExtraBeds', 2, 40);
+
+INSERT INTO Facilities(Name, Amount, Cost)
+VALUES('ExtraBeds', 3, 60);
+
+INSERT INTO Hotel(Name)
+VALUES('D & L - Hotel');
+
+INSERT INTO RoomDiscount(DiscountCode, DiscountValue)
+VALUES ('SummerDiscount', 25),('SpringDiscount', 50),
+('FallDiscount', 75), ('WinterDiscount', 100);
+
+
+--RoomNumber Column --
+
+
+DECLARE @a int
+SET @a = 1
+WHILE (@a <= 400)
+BEGIN
+INSERT INTO Room(RoomNumber)
+VALUES(@a)
+SET @a = @a + 1
+END;
+
+-- CustomerMax Column --
+
+
+DECLARE @i INT
+SET @i = 1
+while (@i < 400)
+BEGIN
+DECLARE @Random INT
+DECLARE @Upper INT
+DECLARE @Lower INT
+SET @Lower = 1 ---- The lowest random number
+SET @Upper = 4 ---- One more than the highest random number
+SELECT @Random = ROUND(((@Upper - @Lower) * RAND() + @Lower), 0)
+Update Room SET CustomerMax = @Random
+WHERE room.Room_ID = @i
+SET @i = @i + 1
+END;
+
+
+--Available Column--
+ 
+
+DECLARE @a int
+DECLARE @y int
+SET @a = 1
+SET @y = 1
+WHILE (@a <= 400)
+BEGIN
+UPDATE Room SET Available = @y
+WHERE Room.Room_ID = @a
+SET @a = @a + 1
+END;
+
+
+--Cost Column -- 
+
+
+-- 1 CustomerMax
+DECLARE @r int
+SET @r = 750
+BEGIN
+UPDATE Room SET Cost = @r
+WHERE Room.CustomerMax = 1
+END;
+-- 2 CustomerMax
+DECLARE @u int
+SET @u = 1500
+BEGIN
+UPDATE Room SET Cost = @u
+WHERE Room.CustomerMax = 2
+END;
+-- 3 CustomerMax
+DECLARE @p int
+SET @p = 2000
+BEGIN
+UPDATE Room SET Cost = @p
+WHERE Room.CustomerMax = 3
+END;
+-- 3 CustomerMax
+DECLARE @v int
+SET @v = 3000
+BEGIN
+UPDATE Room SET Cost = @v
+WHERE Room.CustomerMax = 4
+END;
+

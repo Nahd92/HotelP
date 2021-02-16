@@ -17,7 +17,6 @@ namespace HotelP.Forms
 
         }
 
-
         private void LoadAllButton_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = HelperClass.LoadBookingData();

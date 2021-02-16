@@ -1,0 +1,93 @@
+﻿DROP TABLE IF EXISTS Customer
+CREATE TABLE Customer(
+Customer_ID INT PRIMARY KEY IDENTITY(1,1),
+FirstName varchar(50),
+LastName varchar(50),
+EmailAddres varchar(50),
+PhoneNumber nvarchar(50),
+ContactPerson varchar(50));
+
+DROP TABLE IF EXISTS Payments
+CREATE TABLE Payments(
+Payments_ID INT PRIMARY KEY IDENTITY(1,1),
+Customer_ID int FOREIGN KEY REFERENCES Customer(Customer_ID),
+FirstName varchar(50),
+LastName varchar(50),
+CreditCard varchar(50),
+Date Date,
+CardNumber varchar(16),
+CVV varchar(3),
+ExpirationDate Date
+);
+
+DROP TABLE IF EXISTS Rooms
+CREATE TABLE Rooms(
+Room_ID INT PRIMARY KEY IDENTITY(1,1),
+RoomNumber int,
+CustomerMax int,
+Available bit, 
+Cost money
+);
+
+DROP TABLE IF EXISTS Booking
+CREATE TABLE Booking(
+Booking_ID INT PRIMARY KEY IDENTITY(1,1),
+Customer_ID int FOREIGN KEY REFERENCES Customer(Customer_ID),
+Payments_ID int FOREIGN KEY REFERENCES Payments(Payments_ID), 
+Room_ID int FOREIGN KEY REFERENCES Room(Room_ID),
+CheckInDate Date,
+CheckOutDate Date,
+NumberOfGuests INT,
+BookingDate Date,
+DiscountCode varchar(50),
+TotalCost varchar(50) 
+);
+
+DROP TABLE IF EXISTS BookingHistory
+CREATE TABLE BookingHistory(
+Date datetime,
+Operation varchar(50),
+OperationDescription varchar(50)
+);
+
+DROP TABLE IF EXISTS CustomerHistory
+CREATE TABLE CustomerHistory(
+Date datetime,
+Operation varchar(50),
+OperationDescription varchar(50)
+);
+
+DROP TABLE IF EXISTS Facilities 
+CREATE TABLE Facilities(
+Facilites_ID int PRIMARY KEY IDENTITY(1,1),
+Name varchar(50),
+Amount int,
+Cost int
+);
+
+DROP TABLE IF EXISTS Hotel
+CREATE TABLE Hotel(
+Hotel_ID INT PRIMARY KEY IDENTITY(1,1),
+Name varchar(50)
+);
+
+DROP TABLE IF EXISTS PaymentsHistory
+CREATE TABLE PaymentsHistory(
+Date datetime,
+Operation varchar(50),
+OperationDescription varchar(50)
+);
+
+DROP TABLE IF EXISTS Reviews
+CREATE TABLE Reviews(
+Review_ID int PRIMARY KEY IDENTITY(1,1),
+Note varchar(255),
+Customer_ID int FOREIGN KEY REFERENCES Customer(Customer_ID)
+);
+
+DROP TABLE IF EXISTS RoomDiscount
+CREATE TABLE RoomDiscount(
+RoomDiscount_ID INT PRIMARY KEY IDENTITY(1,1),
+DiscountCode varchar(50),
+DiscountValue int
+);

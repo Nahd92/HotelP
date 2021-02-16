@@ -60,7 +60,6 @@ namespace HotelP.Forms
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.LogOutButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -386,17 +385,6 @@ namespace HotelP.Forms
             this.label1.TabIndex = 1;
             this.label1.Text = "CustomerID";
             // 
-            // LogOutButton
-            // 
-            this.LogOutButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.LogOutButton.Location = new System.Drawing.Point(1070, 1);
-            this.LogOutButton.Name = "LogOutButton";
-            this.LogOutButton.Size = new System.Drawing.Size(75, 23);
-            this.LogOutButton.TabIndex = 6;
-            this.LogOutButton.Text = "Logout";
-            this.LogOutButton.UseVisualStyleBackColor = true;
-            this.LogOutButton.Click += new System.EventHandler(this.LogOutButton_Click);
-            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -542,7 +530,7 @@ namespace HotelP.Forms
             // fetchAllQueriesToolStripMenuItem
             // 
             this.fetchAllQueriesToolStripMenuItem.Name = "fetchAllQueriesToolStripMenuItem";
-            this.fetchAllQueriesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fetchAllQueriesToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.fetchAllQueriesToolStripMenuItem.Text = "Fetch all Queries";
             this.fetchAllQueriesToolStripMenuItem.Click += new System.EventHandler(this.fetchAllQueriesToolStripMenuItem_Click);
             // 
@@ -565,7 +553,6 @@ namespace HotelP.Forms
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.IndianRed;
             this.ClientSize = new System.Drawing.Size(1145, 697);
-            this.Controls.Add(this.LogOutButton);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -617,7 +604,6 @@ namespace HotelP.Forms
         private System.Windows.Forms.Button findBookingBtn;
         private System.Windows.Forms.Button LoadAllButton;
         private System.Windows.Forms.Button ResetViewButton;
-        private System.Windows.Forms.Button LogOutButton;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;

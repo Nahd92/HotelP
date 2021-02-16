@@ -47,7 +47,6 @@ C:\Users\Admin\source\repos\HotelProjectWithDatabase\HotelProject\HotelP\obj\Deb
 C:\Users\Admin\source\repos\HotelProjectWithDatabase\HotelProject\HotelP\obj\Debug\WindowsFormsApp1.exe
 C:\Users\Admin\source\repos\HotelProjectWithDatabase\HotelProject\HotelP\obj\Debug\WindowsFormsApp1.pdb
 C:\Users\Admin\Desktop\HotelProject\HotelP\obj\Debug\HotelP.Forms.BookingForm.resources
-C:\Users\Admin\Desktop\HotelProject\HotelP\obj\Debug\HotelP.Forms.Login.resources
 C:\Users\Admin\Desktop\HotelProject\HotelP\obj\Debug\HotelP.Forms.Queries.resources
 C:\Users\Admin\Desktop\HotelProject\HotelP\obj\Debug\HotelP.Forms.StoredProcedure.resources
 C:\Users\Admin\Desktop\HotelProject\HotelP\obj\Debug\HotelP.Properties.Resources.resources

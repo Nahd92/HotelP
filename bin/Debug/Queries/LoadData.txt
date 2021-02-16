@@ -1,1 +1,5 @@
-﻿
+﻿INSERT INTO Customer(FirstName, LastName, EmailAddres, PhoneNumber,ContactPerson)
+VALUES('Jon','Snow','Jon@Snow.com','07088442288','Harry');
+
+INSERT INTO UserLogins(UserName,Password, Roles)
+VALUES ('Admin','Newton21', 'Admin'),('Guest','Newton21','Guest')

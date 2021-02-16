@@ -1,4 +1,6 @@
-﻿CREATE TABLE Customer(
+﻿CREATE DATABASE TestDB;
+
+CREATE TABLE Customer(
 Customer_ID INT PRIMARY KEY IDENTITY(1,1),
 FirstName varchar(50),
 LastName varchar(50),
@@ -35,3 +37,9 @@ BookingDate Date,
 DiscountCode varchar(50),
 TotalCost varchar(50) 
 );
+
+CREATE TABLE UserLogins(
+Id, PRIMARY KEY IDENTITY(1,),
+UserName varchar(50),
+Password varchar(50),
+Roles varchar(50));

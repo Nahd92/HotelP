@@ -11,14 +11,10 @@ namespace HotelP.Forms
   
     public partial class BookingForm : Form
     {
-        public BookingForm(UserLogins userLogins)
+        public BookingForm()
         {
             InitializeComponent();
-            if (userLogins.Roles == "Guest")
-            {
-                btnUpdate.Visible = false;
-                btnDelete.Visible = false;             
-            }
+
         }
 
 
@@ -145,12 +141,7 @@ namespace HotelP.Forms
             booking.TotalCost = int.Parse(tTotalCost.Text);
         }
 
-        private void LogOutButton_Click(object sender, EventArgs e)
-        {
-            var login = new Login();
-            login.Show();
-            Hide();
-        }
+       
 
         private void fetchAllProceduresToolStripMenuItem_Click(object sender, EventArgs e)
         {

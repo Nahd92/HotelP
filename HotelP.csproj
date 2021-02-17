@@ -104,6 +104,12 @@
     <Compile Include="Forms\Queries.Designer.cs">
       <DependentUpon>Queries.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\RoomsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RoomsForm.Designer.cs">
+      <DependentUpon>RoomsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\StoredProcedure.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,14 +121,17 @@
     <Compile Include="Helpers\LoginHelper\LoginHelper.cs" />
     <Compile Include="Helpers\PaymentsHelper\PaymentsHelper.cs" />
     <Compile Include="Helpers\Queries\QueriesHelper.cs" />
+    <Compile Include="Helpers\RoomsHelper\RoomHelper.cs" />
     <Compile Include="Helpers\StoredProcedure\SPHelpers.cs" />
     <Compile Include="Mappings\BookingMapping.cs" />
     <Compile Include="Mappings\CustomerMapping.cs" />
     <Compile Include="Mappings\PaymentsMapping.cs" />
+    <Compile Include="Mappings\RoomMapping.cs" />
     <Compile Include="Mappings\UserLoginsMapping.cs" />
     <Compile Include="Model\Booking.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\Payments.cs" />
+    <Compile Include="Model\Rooms.cs" />
     <Compile Include="Model\UserLogins.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -143,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PaymentsForm.resx">
       <DependentUpon>PaymentsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RoomsForm.resx">
+      <DependentUpon>RoomsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Queries\CreateDatabase.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

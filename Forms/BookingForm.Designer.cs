@@ -142,7 +142,7 @@ namespace HotelP.Forms
             // 
             // ResetViewButton
             // 
-            this.ResetViewButton.Location = new System.Drawing.Point(191, 69);
+            this.ResetViewButton.Location = new System.Drawing.Point(214, 62);
             this.ResetViewButton.Name = "ResetViewButton";
             this.ResetViewButton.Size = new System.Drawing.Size(140, 48);
             this.ResetViewButton.TabIndex = 5;
@@ -152,7 +152,7 @@ namespace HotelP.Forms
             // 
             // LoadAllButton
             // 
-            this.LoadAllButton.Location = new System.Drawing.Point(24, 69);
+            this.LoadAllButton.Location = new System.Drawing.Point(47, 62);
             this.LoadAllButton.Name = "LoadAllButton";
             this.LoadAllButton.Size = new System.Drawing.Size(132, 48);
             this.LoadAllButton.TabIndex = 4;
@@ -326,7 +326,7 @@ namespace HotelP.Forms
             this.groupBox5.Controls.Add(this.LoadAllButton);
             this.groupBox5.Location = new System.Drawing.Point(18, 198);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(378, 155);
+            this.groupBox5.Size = new System.Drawing.Size(436, 155);
             this.groupBox5.TabIndex = 24;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Load or Reset";
@@ -339,6 +339,7 @@ namespace HotelP.Forms
             this.PaymentBtn.TabIndex = 24;
             this.PaymentBtn.Text = "Create Payment";
             this.PaymentBtn.UseVisualStyleBackColor = true;
+            this.PaymentBtn.Click += new System.EventHandler(this.PaymentBtn_Click);
             // 
             // label11
             // 

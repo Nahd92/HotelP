@@ -47,5 +47,12 @@ namespace HotelP.Forms
             customer.Show();
             this.Hide();
         }
+
+        private void roomTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var room = new RoomsForm();
+            room.Show();
+            this.Hide();
+        }
     }
 }

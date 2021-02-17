@@ -242,6 +242,12 @@ namespace HotelP.Forms
         {
             EnableAllInputs();
         }
+
+        private void PaymentBtn_Click(object sender, EventArgs e)
+        {
+            var payments = new PaymentsForm();
+            payments.ShowDialog();
+        }
     }
 }
 

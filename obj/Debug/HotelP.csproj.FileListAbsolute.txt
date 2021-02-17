@@ -65,3 +65,4 @@ C:\Users\Admin\Desktop\HotelProject\HotelP\obj\Debug\HotelP.Forms.FirstPage.reso
 C:\Users\Admin\Desktop\HotelProject\HotelP\obj\Debug\HotelP.Forms.PaymentsForm.resources
 C:\Users\Admin\Desktop\HotelProject\HotelP\obj\Debug\HotelP.Forms.LoginPage.resources
 C:\Users\Admin\Desktop\HotelProject\HotelP\obj\Debug\HotelP.Forms.CustomerForm.resources
+C:\Users\Admin\Desktop\HotelProject\HotelP\obj\Debug\HotelP.Forms.RoomsForm.resources

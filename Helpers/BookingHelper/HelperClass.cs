@@ -19,8 +19,7 @@ namespace HotelP.Helpers.BookingHelper
                 return bookInfo;
             }
         }
-
-        public static IList<Booking> LoadBookingData()
+  public static IList<Booking> LoadBookingData()
         {
             ISession session = SessionFactoryService.OpenSession;
             using (session)
@@ -47,6 +46,7 @@ namespace HotelP.Helpers.BookingHelper
                 }
             }
         }
+      
 
         public static void CreateBooking(int CustomerId, int PaymentsId, 
             string CheckInDate, string CheckOutDate, int NumberOfGuests, 

@@ -4,17 +4,18 @@ using NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using HotelP.Helpers;
+using HotelP.Helpers.BookingHelper;
+using System.Linq;
 
 namespace HotelP.Forms
 {
   
     public partial class BookingForm : Form
     {
+
         public BookingForm()
         {
             InitializeComponent();
-
         }
 
         private void LoadAllButton_Click(object sender, EventArgs e)
@@ -28,12 +29,6 @@ namespace HotelP.Forms
             SetTextBoxesToEmpty();
         }
 
-      
-        private void btnLoad_Click_1(object sender, EventArgs e)
-        {
-            dataGridView1.DataSource = HelperClass.LoadBookingData();
-        }
-
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             ISession session = SessionFactoryService.OpenSession;
@@ -45,7 +40,7 @@ namespace HotelP.Forms
                     IQuery query = session.CreateQuery("FROM Booking WHERE booking_ID = '" + tBookingID.Text + "'");
                     transaction.Commit();
 
-                    dataGridView1.DataSource = HelperClass.LoadBookingData();
+                    dataGridView1.DataSource = ""; // EJ klar
 
                     SetTextBoxesToEmpty();
 
@@ -68,12 +63,13 @@ namespace HotelP.Forms
             if (id == "")
                 return;
 
-            var bookingData = HelperClass.GetBookingById(id);
+            var bookingData = HelperClass.GetById(id);
             SetTextBoxesToData(bookingData);
         }
 
         private void findBookingBtn_Click(object sender, EventArgs e)
         {
+          
             if (!string.IsNullOrEmpty(tBookingID.Text))
             {
                 ISession session = SessionFactoryService.OpenSession;
@@ -81,11 +77,11 @@ namespace HotelP.Forms
                 {
                     try
                     {
-                        var bookingData = HelperClass.GetBookingById(tBookingID.Text);
+                        var bookingData = HelperClass.GetById(tBookingID.Text);
                         if (bookingData != null)
                         {
                             SetTextBoxesToData(bookingData);
-                            dataGridView1.DataSource = HelperClass.LoadBookingAfterUpdate(bookingData.Booking_ID.ToString());
+                            dataGridView1.DataSource = HelperClass.LoadBookingWithID(bookingData.Booking_ID.ToString());
                         }
                     }
                     catch (Exception)
@@ -140,7 +136,33 @@ namespace HotelP.Forms
             booking.TotalCost = int.Parse(tTotalCost.Text);
         }
 
-       
+        public void DisableAllInputs()
+        {
+            tBookingDate.Enabled = false;
+            tCustomerID.Enabled = false;
+            tCheckInDate.Enabled = false;
+            tCheckOutDate.Enabled = false;
+            tDiscountCode.Enabled = false;
+            tRoomID.Enabled = false;
+            tPaymentsID.Enabled = false;
+            tNumberOfGuests.Enabled = false;
+            tTotalCost.Enabled = false;
+            tNumberOfExtraBeds.Enabled = false;
+        }
+        public void EnableAllInputs()
+        {
+            tBookingDate.Enabled = true;
+            tCheckInDate.Enabled = true;
+            tCheckOutDate.Enabled = true;
+            tDiscountCode.Enabled = true;
+            tRoomID.Enabled = true;
+            tPaymentsID.Enabled = true;
+            tNumberOfGuests.Enabled = true;
+            tTotalCost.Enabled = true;
+            tCustomerID.Enabled = true;
+        }
+
+
 
         private void fetchAllProceduresToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -156,8 +178,29 @@ namespace HotelP.Forms
 
         private void paymentsTableToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var payments = new Payments();
+            var payments = new PaymentsForm();
             payments.ShowDialog();
+        }
+
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
+        
+           string emptyTextBoxes = string.Join(System.Environment.NewLine,
+               (
+               from T in this.Controls.OfType<TextBox>()
+               where string.IsNullOrWhiteSpace(T.Text)
+               select T.Name)
+               ).ToArray().ToString();
+
+
+            HelperClass.CreateBooking(int.Parse(tCustomerID.Text), int.Parse(tPaymentsID.Text), tCheckInDate.Text, tCheckOutDate.Text,
+                int.Parse(tNumberOfGuests.Text), tDiscountCode.Text, int.Parse(tNumberOfExtraBeds.Text));
+
+            SetTextBoxesToEmpty();
+            dataGridView1.DataSource = HelperClass.LoadBookingData();
+
         }
     }
 }
+
+

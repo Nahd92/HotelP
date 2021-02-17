@@ -17,7 +17,7 @@ namespace HotelP.Helpers.StoredProcedure
             ISession session = SessionFactoryService.OpenSession;
             using (session)
             {
-                var query = session.CreateSQLQuery("SELECT [Name] FROM [dbo].[sysobjects] WHERE [XType] = 'P'");
+                var query = session.CreateSQLQuery("SELECT name FROM [dbo].[sysobjects] WHERE [XType] = 'P'AND name  NOT LIKE '%\\_%' ESCAPE '\\'");
                 var bookInfo = query.List<string>();
                 try
                 {
@@ -31,7 +31,6 @@ namespace HotelP.Helpers.StoredProcedure
 
                     throw ex;
                 }
-
             }
             return storedProcedure;
         }
@@ -52,7 +51,6 @@ namespace HotelP.Helpers.StoredProcedure
                     contents.Add(con);
                 }
             }
-
             return contents;
         }
     }

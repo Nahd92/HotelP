@@ -92,3 +92,6 @@ UPDATE Room SET Cost = @v
 WHERE Room.CustomerMax = 4
 END;
 
+
+INSERT INTO UserLogins(UserName, Password, Role)
+VALUES('Admin', 'Newton2021', 'Admin'), ('Guest', 'Newton2021', 'Guest'), 

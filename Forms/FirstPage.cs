@@ -25,7 +25,7 @@ namespace HotelP.Forms
 
         private void paymentsTableToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var payments = new Payments();
+            var payments = new PaymentsForm();
             payments.ShowDialog();
         }
 

@@ -44,8 +44,7 @@ namespace HotelP.Services
                 return Fluently.Configure()
                      .Database(MsSqlConfiguration.MsSql2012
                      .ConnectionString(connectionString))
-                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Program>())
-                     .ExposeConfiguration(BuildSchema)
+                     .Mappings(x => x.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
                      .BuildSessionFactory(); 
             }
             catch (Exception ex)

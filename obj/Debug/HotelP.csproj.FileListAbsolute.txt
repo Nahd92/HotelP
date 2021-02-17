@@ -61,5 +61,6 @@ C:\Users\Admin\Desktop\HotelProject\HotelP\obj\Debug\HotelP.exe
 C:\Users\Admin\Desktop\HotelProject\HotelP\obj\Debug\HotelP.pdb
 C:\Users\Admin\Desktop\HotelProject\HotelP\obj\Debug\HotelP.csprojAssemblyReference.cache
 C:\Users\Admin\Desktop\HotelProject\HotelP\bin\Debug\Queries\LoadData.txt
-C:\Users\Admin\Desktop\HotelProject\HotelP\obj\Debug\HotelP.Forms.Payments.resources
 C:\Users\Admin\Desktop\HotelProject\HotelP\obj\Debug\HotelP.Forms.FirstPage.resources
+C:\Users\Admin\Desktop\HotelProject\HotelP\obj\Debug\HotelP.Forms.PaymentsForm.resources
+C:\Users\Admin\Desktop\HotelProject\HotelP\obj\Debug\HotelP.Forms.LoginPage.resources

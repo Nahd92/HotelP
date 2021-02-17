@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelP.Helpers.PaymentsHelper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,16 +11,21 @@ using System.Windows.Forms;
 
 namespace HotelP.Forms
 {
-    public partial class Payments : Form
+    public partial class PaymentsForm : Form
     {
-        public Payments()
+        public PaymentsForm()
         {
             InitializeComponent();
         }
 
         private void LoadAllButton_Click(object sender, EventArgs e)
         {
+            dataGridView1.DataSource = PaymentsHelper.LoadPayments();
+        }
 
+        private void ResetViewButton_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = "";
         }
     }
 }

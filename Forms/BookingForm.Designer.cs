@@ -77,6 +77,12 @@ namespace HotelP.Forms
             this.queriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fetchAllQueriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tNumberOfExtraBeds = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.CreateCustomerBtn = new System.Windows.Forms.Button();
+            this.CreatePaymentBtn = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -131,7 +137,7 @@ namespace HotelP.Forms
             // 
             // ResetViewButton
             // 
-            this.ResetViewButton.Location = new System.Drawing.Point(434, 44);
+            this.ResetViewButton.Location = new System.Drawing.Point(448, 33);
             this.ResetViewButton.Name = "ResetViewButton";
             this.ResetViewButton.Size = new System.Drawing.Size(109, 23);
             this.ResetViewButton.TabIndex = 5;
@@ -141,7 +147,7 @@ namespace HotelP.Forms
             // 
             // LoadAllButton
             // 
-            this.LoadAllButton.Location = new System.Drawing.Point(300, 44);
+            this.LoadAllButton.Location = new System.Drawing.Point(314, 33);
             this.LoadAllButton.Name = "LoadAllButton";
             this.LoadAllButton.Size = new System.Drawing.Size(109, 23);
             this.LoadAllButton.TabIndex = 4;
@@ -151,7 +157,7 @@ namespace HotelP.Forms
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(793, 44);
+            this.btnDelete.Location = new System.Drawing.Point(807, 33);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 3;
@@ -160,7 +166,7 @@ namespace HotelP.Forms
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(685, 44);
+            this.btnUpdate.Location = new System.Drawing.Point(699, 33);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 2;
@@ -170,18 +176,25 @@ namespace HotelP.Forms
             // 
             // btnInsert
             // 
-            this.btnInsert.Location = new System.Drawing.Point(569, 44);
+            this.btnInsert.Location = new System.Drawing.Point(595, 33);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(75, 23);
             this.btnInsert.TabIndex = 1;
             this.btnInsert.Text = "Insert";
             this.btnInsert.UseVisualStyleBackColor = true;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.CreatePaymentBtn);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.CreateCustomerBtn);
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.tNumberOfExtraBeds);
+            this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.findBookingBtn);
             this.groupBox1.Controls.Add(this.tBookingID);
             this.groupBox1.Controls.Add(this.label10);
@@ -212,7 +225,7 @@ namespace HotelP.Forms
             // 
             // findBookingBtn
             // 
-            this.findBookingBtn.Location = new System.Drawing.Point(455, 18);
+            this.findBookingBtn.Location = new System.Drawing.Point(506, 13);
             this.findBookingBtn.Name = "findBookingBtn";
             this.findBookingBtn.Size = new System.Drawing.Size(118, 31);
             this.findBookingBtn.TabIndex = 4;
@@ -222,7 +235,7 @@ namespace HotelP.Forms
             // 
             // tBookingID
             // 
-            this.tBookingID.Location = new System.Drawing.Point(340, 24);
+            this.tBookingID.Location = new System.Drawing.Point(391, 19);
             this.tBookingID.Name = "tBookingID";
             this.tBookingID.Size = new System.Drawing.Size(100, 20);
             this.tBookingID.TabIndex = 20;
@@ -230,7 +243,7 @@ namespace HotelP.Forms
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(272, 27);
+            this.label10.Location = new System.Drawing.Point(323, 22);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(57, 13);
             this.label10.TabIndex = 19;
@@ -238,21 +251,21 @@ namespace HotelP.Forms
             // 
             // tTotalCost
             // 
-            this.tTotalCost.Location = new System.Drawing.Point(759, 114);
+            this.tTotalCost.Location = new System.Drawing.Point(977, 86);
             this.tTotalCost.Name = "tTotalCost";
             this.tTotalCost.Size = new System.Drawing.Size(100, 20);
             this.tTotalCost.TabIndex = 18;
             // 
             // tDiscountCode
             // 
-            this.tDiscountCode.Location = new System.Drawing.Point(759, 87);
+            this.tDiscountCode.Location = new System.Drawing.Point(810, 82);
             this.tDiscountCode.Name = "tDiscountCode";
             this.tDiscountCode.Size = new System.Drawing.Size(100, 20);
             this.tDiscountCode.TabIndex = 17;
             // 
             // tBookingDate
             // 
-            this.tBookingDate.Location = new System.Drawing.Point(759, 62);
+            this.tBookingDate.Location = new System.Drawing.Point(810, 57);
             this.tBookingDate.Name = "tBookingDate";
             this.tBookingDate.Size = new System.Drawing.Size(100, 20);
             this.tBookingDate.TabIndex = 16;
@@ -260,7 +273,7 @@ namespace HotelP.Forms
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(666, 118);
+            this.label7.Location = new System.Drawing.Point(916, 89);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(55, 13);
             this.label7.TabIndex = 15;
@@ -269,7 +282,7 @@ namespace HotelP.Forms
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(666, 87);
+            this.label8.Location = new System.Drawing.Point(717, 82);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(74, 13);
             this.label8.TabIndex = 14;
@@ -278,7 +291,7 @@ namespace HotelP.Forms
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(666, 62);
+            this.label9.Location = new System.Drawing.Point(717, 57);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(69, 13);
             this.label9.TabIndex = 13;
@@ -286,42 +299,42 @@ namespace HotelP.Forms
             // 
             // tNumberOfGuests
             // 
-            this.tNumberOfGuests.Location = new System.Drawing.Point(544, 114);
+            this.tNumberOfGuests.Location = new System.Drawing.Point(595, 109);
             this.tNumberOfGuests.Name = "tNumberOfGuests";
             this.tNumberOfGuests.Size = new System.Drawing.Size(100, 20);
             this.tNumberOfGuests.TabIndex = 12;
             // 
             // tCheckOutDate
             // 
-            this.tCheckOutDate.Location = new System.Drawing.Point(544, 87);
+            this.tCheckOutDate.Location = new System.Drawing.Point(595, 82);
             this.tCheckOutDate.Name = "tCheckOutDate";
             this.tCheckOutDate.Size = new System.Drawing.Size(100, 20);
             this.tCheckOutDate.TabIndex = 11;
             // 
             // tCheckInDate
             // 
-            this.tCheckInDate.Location = new System.Drawing.Point(544, 62);
+            this.tCheckInDate.Location = new System.Drawing.Point(595, 57);
             this.tCheckInDate.Name = "tCheckInDate";
             this.tCheckInDate.Size = new System.Drawing.Size(100, 20);
             this.tCheckInDate.TabIndex = 10;
             // 
             // tPaymentsID
             // 
-            this.tPaymentsID.Location = new System.Drawing.Point(340, 118);
+            this.tPaymentsID.Location = new System.Drawing.Point(391, 113);
             this.tPaymentsID.Name = "tPaymentsID";
             this.tPaymentsID.Size = new System.Drawing.Size(100, 20);
             this.tPaymentsID.TabIndex = 9;
             // 
             // tRoomID
             // 
-            this.tRoomID.Location = new System.Drawing.Point(340, 87);
+            this.tRoomID.Location = new System.Drawing.Point(391, 82);
             this.tRoomID.Name = "tRoomID";
             this.tRoomID.Size = new System.Drawing.Size(100, 20);
             this.tRoomID.TabIndex = 8;
             // 
             // tCustomerID
             // 
-            this.tCustomerID.Location = new System.Drawing.Point(340, 59);
+            this.tCustomerID.Location = new System.Drawing.Point(391, 54);
             this.tCustomerID.Name = "tCustomerID";
             this.tCustomerID.Size = new System.Drawing.Size(100, 20);
             this.tCustomerID.TabIndex = 7;
@@ -329,7 +342,7 @@ namespace HotelP.Forms
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(452, 118);
+            this.label4.Location = new System.Drawing.Point(503, 113);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(88, 13);
             this.label4.TabIndex = 6;
@@ -338,7 +351,7 @@ namespace HotelP.Forms
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(452, 87);
+            this.label5.Location = new System.Drawing.Point(503, 82);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(78, 13);
             this.label5.TabIndex = 5;
@@ -347,7 +360,7 @@ namespace HotelP.Forms
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(452, 62);
+            this.label6.Location = new System.Drawing.Point(503, 57);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(70, 13);
             this.label6.TabIndex = 4;
@@ -356,7 +369,7 @@ namespace HotelP.Forms
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(272, 121);
+            this.label3.Location = new System.Drawing.Point(323, 116);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 13);
             this.label3.TabIndex = 3;
@@ -365,7 +378,7 @@ namespace HotelP.Forms
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(272, 94);
+            this.label2.Location = new System.Drawing.Point(323, 89);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 13);
             this.label2.TabIndex = 2;
@@ -374,7 +387,7 @@ namespace HotelP.Forms
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(272, 62);
+            this.label1.Location = new System.Drawing.Point(323, 57);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 13);
             this.label1.TabIndex = 1;
@@ -404,7 +417,7 @@ namespace HotelP.Forms
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.closeToolStripMenuItem.Text = "Close";
             // 
             // toolStripMenuItem2
@@ -506,6 +519,58 @@ namespace HotelP.Forms
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // tNumberOfExtraBeds
+            // 
+            this.tNumberOfExtraBeds.Location = new System.Drawing.Point(810, 112);
+            this.tNumberOfExtraBeds.Name = "tNumberOfExtraBeds";
+            this.tNumberOfExtraBeds.Size = new System.Drawing.Size(100, 20);
+            this.tNumberOfExtraBeds.TabIndex = 22;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(717, 116);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(57, 13);
+            this.label12.TabIndex = 21;
+            this.label12.Text = "Extra beds";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(37, 21);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(194, 13);
+            this.label13.TabIndex = 23;
+            this.label13.Text = "Do you need to create a Customer first?";
+            // 
+            // CreateCustomerBtn
+            // 
+            this.CreateCustomerBtn.Location = new System.Drawing.Point(69, 44);
+            this.CreateCustomerBtn.Name = "CreateCustomerBtn";
+            this.CreateCustomerBtn.Size = new System.Drawing.Size(130, 26);
+            this.CreateCustomerBtn.TabIndex = 22;
+            this.CreateCustomerBtn.Text = "Create Customer";
+            this.CreateCustomerBtn.UseVisualStyleBackColor = true;
+            // 
+            // CreatePaymentBtn
+            // 
+            this.CreatePaymentBtn.Location = new System.Drawing.Point(38, 107);
+            this.CreatePaymentBtn.Name = "CreatePaymentBtn";
+            this.CreatePaymentBtn.Size = new System.Drawing.Size(190, 26);
+            this.CreatePaymentBtn.TabIndex = 24;
+            this.CreatePaymentBtn.Text = "Create Payment";
+            this.CreatePaymentBtn.UseVisualStyleBackColor = true;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(37, 83);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(191, 13);
+            this.label14.TabIndex = 25;
+            this.label14.Text = "Do you need to create a Payment first?";
+            // 
             // BookingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -582,5 +647,11 @@ namespace HotelP.Forms
         private System.Windows.Forms.ToolStripMenuItem reviewsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem roomDiscountToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fetchAllProceduresToolStripMenuItem;
+        private System.Windows.Forms.TextBox tNumberOfExtraBeds;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button CreatePaymentBtn;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button CreateCustomerBtn;
+        private System.Windows.Forms.Label label13;
     }
 }

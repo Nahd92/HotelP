@@ -54,6 +54,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Messaging" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
@@ -79,11 +80,17 @@
     <Compile Include="Forms\FirstPage.Designer.cs">
       <DependentUpon>FirstPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Payments.cs">
+    <Compile Include="Forms\LoginPage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Payments.Designer.cs">
-      <DependentUpon>Payments.cs</DependentUpon>
+    <Compile Include="Forms\LoginPage.Designer.cs">
+      <DependentUpon>LoginPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PaymentsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PaymentsForm.Designer.cs">
+      <DependentUpon>PaymentsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Queries.cs">
       <SubType>Form</SubType>
@@ -97,14 +104,19 @@
     <Compile Include="Forms\StoredProcedure.Designer.cs">
       <DependentUpon>StoredProcedure.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\HelperClass.cs" />
+    <Compile Include="Helpers\BookingHelper\HelperClass.cs" />
+    <Compile Include="Helpers\LoginHelper\LoginHelper.cs" />
+    <Compile Include="Helpers\PaymentsHelper\PaymentsHelper.cs" />
     <Compile Include="Helpers\Queries\QueriesHelper.cs" />
     <Compile Include="Helpers\StoredProcedure\SPHelpers.cs" />
     <Compile Include="Mappings\BookingMapping.cs" />
     <Compile Include="Mappings\CustomerMapping.cs" />
+    <Compile Include="Mappings\PaymentsMapping.cs" />
+    <Compile Include="Mappings\UserLoginsMapping.cs" />
     <Compile Include="Model\Booking.cs" />
     <Compile Include="Model\Customer.cs" />
-    <Compile Include="Enums\UserType.cs" />
+    <Compile Include="Model\Payments.cs" />
+    <Compile Include="Model\UserLogins.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SessionFactoryService.cs" />
@@ -116,8 +128,11 @@
     <EmbeddedResource Include="Forms\FirstPage.resx">
       <DependentUpon>FirstPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Payments.resx">
-      <DependentUpon>Payments.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\LoginPage.resx">
+      <DependentUpon>LoginPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PaymentsForm.resx">
+      <DependentUpon>PaymentsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Queries\CreateDatabase.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

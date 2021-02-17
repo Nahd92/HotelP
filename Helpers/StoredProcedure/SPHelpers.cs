@@ -31,7 +31,7 @@ namespace HotelP.Helpers.StoredProcedure
 
                     throw ex;
                 }
-               
+
             }
             return storedProcedure;
         }

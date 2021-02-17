@@ -52,7 +52,6 @@ namespace HotelP.Forms
             this.queriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fetchAllQueriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.LogOutButton = new System.Windows.Forms.Button();
             this.ClearBtn = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -64,7 +63,7 @@ namespace HotelP.Forms
             this.TextForQueries.Multiline = true;
             this.TextForQueries.Name = "TextForQueries";
             this.TextForQueries.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TextForQueries.Size = new System.Drawing.Size(475, 362);
+            this.TextForQueries.Size = new System.Drawing.Size(726, 662);
             this.TextForQueries.TabIndex = 0;
             // 
             // ListWithQueries
@@ -74,7 +73,7 @@ namespace HotelP.Forms
             this.ListWithQueries.ItemHeight = 25;
             this.ListWithQueries.Location = new System.Drawing.Point(23, 63);
             this.ListWithQueries.Name = "ListWithQueries";
-            this.ListWithQueries.Size = new System.Drawing.Size(233, 304);
+            this.ListWithQueries.Size = new System.Drawing.Size(233, 504);
             this.ListWithQueries.TabIndex = 1;
             this.ListWithQueries.DoubleClick += new System.EventHandler(this.ListWithQueries_DoubleClick);
             // 
@@ -89,7 +88,7 @@ namespace HotelP.Forms
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1038, 24);
             this.menuStrip1.TabIndex = 9;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -231,20 +230,11 @@ namespace HotelP.Forms
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
-            // LogOutButton
-            // 
-            this.LogOutButton.Location = new System.Drawing.Point(725, 1);
-            this.LogOutButton.Name = "LogOutButton";
-            this.LogOutButton.Size = new System.Drawing.Size(75, 23);
-            this.LogOutButton.TabIndex = 10;
-            this.LogOutButton.Text = "Logout";
-            this.LogOutButton.UseVisualStyleBackColor = true;
-            // 
             // ClearBtn
             // 
-            this.ClearBtn.Location = new System.Drawing.Point(76, 380);
+            this.ClearBtn.Location = new System.Drawing.Point(63, 600);
             this.ClearBtn.Name = "ClearBtn";
-            this.ClearBtn.Size = new System.Drawing.Size(105, 45);
+            this.ClearBtn.Size = new System.Drawing.Size(128, 70);
             this.ClearBtn.TabIndex = 11;
             this.ClearBtn.Text = "ClearView";
             this.ClearBtn.UseVisualStyleBackColor = true;
@@ -255,9 +245,8 @@ namespace HotelP.Forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSalmon;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1038, 737);
             this.Controls.Add(this.ClearBtn);
-            this.Controls.Add(this.LogOutButton);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.ListWithQueries);
             this.Controls.Add(this.TextForQueries);
@@ -295,7 +284,6 @@ namespace HotelP.Forms
         private System.Windows.Forms.ToolStripMenuItem queriesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fetchAllQueriesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.Button LogOutButton;
         private System.Windows.Forms.Button ClearBtn;
     }
 }

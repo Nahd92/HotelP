@@ -153,5 +153,11 @@ namespace HotelP.Forms
             var queries = new Queries();
             queries.ShowDialog();
         }
+
+        private void paymentsTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var payments = new Payments();
+            payments.ShowDialog();
+        }
     }
 }

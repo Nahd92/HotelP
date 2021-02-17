@@ -1,7 +1,7 @@
 ﻿
 namespace HotelP.Forms
 {
-    partial class StoredProcedure
+    partial class FirstPage
     {
         /// <summary>
         /// Required designer variable.
@@ -29,6 +29,8 @@ namespace HotelP.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FirstPage));
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,13 +47,24 @@ namespace HotelP.Forms
             this.fetchAllProceduresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.queriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fetchAllQueriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DetailsBtn = new System.Windows.Forms.Button();
-            this.ClearViewBtn = new System.Windows.Forms.Button();
-            this.STListbox = new System.Windows.Forms.ListBox();
-            this.StoredProcedureDefinitionTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.bookingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.LightSalmon;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.textBox1.Location = new System.Drawing.Point(136, 57);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(952, 176);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.Text = "Welcome to Luisa and Dhans DatabaseApplicaiton";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // menuStrip1
             // 
@@ -62,8 +75,8 @@ namespace HotelP.Forms
             this.queriesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(854, 24);
-            this.menuStrip1.TabIndex = 8;
+            this.menuStrip1.Size = new System.Drawing.Size(1167, 24);
+            this.menuStrip1.TabIndex = 9;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // toolStripMenuItem1
@@ -77,7 +90,7 @@ namespace HotelP.Forms
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.closeToolStripMenuItem.Text = "Close";
             // 
             // toolStripMenuItem2
@@ -90,7 +103,8 @@ namespace HotelP.Forms
             this.hotelToolStripMenuItem,
             this.paymentsToolStripMenuItem,
             this.reviewsToolStripMenuItem,
-            this.roomDiscountToolStripMenuItem});
+            this.roomDiscountToolStripMenuItem,
+            this.bookingToolStripMenuItem});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(44, 20);
             this.toolStripMenuItem2.Text = "View";
@@ -98,49 +112,50 @@ namespace HotelP.Forms
             // paymentsTableToolStripMenuItem
             // 
             this.paymentsTableToolStripMenuItem.Name = "paymentsTableToolStripMenuItem";
-            this.paymentsTableToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.paymentsTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.paymentsTableToolStripMenuItem.Text = "Payments";
+            this.paymentsTableToolStripMenuItem.Click += new System.EventHandler(this.paymentsTableToolStripMenuItem_Click);
             // 
             // roomTableToolStripMenuItem
             // 
             this.roomTableToolStripMenuItem.Name = "roomTableToolStripMenuItem";
-            this.roomTableToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.roomTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.roomTableToolStripMenuItem.Text = "Rooms";
             // 
             // customerTableToolStripMenuItem
             // 
             this.customerTableToolStripMenuItem.Name = "customerTableToolStripMenuItem";
-            this.customerTableToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.customerTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.customerTableToolStripMenuItem.Text = "Customers";
             // 
             // facilitesToolStripMenuItem
             // 
             this.facilitesToolStripMenuItem.Name = "facilitesToolStripMenuItem";
-            this.facilitesToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.facilitesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.facilitesToolStripMenuItem.Text = "Facilites";
             // 
             // hotelToolStripMenuItem
             // 
             this.hotelToolStripMenuItem.Name = "hotelToolStripMenuItem";
-            this.hotelToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.hotelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.hotelToolStripMenuItem.Text = "Hotel";
             // 
             // paymentsToolStripMenuItem
             // 
             this.paymentsToolStripMenuItem.Name = "paymentsToolStripMenuItem";
-            this.paymentsToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.paymentsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.paymentsToolStripMenuItem.Text = "Staffs";
             // 
             // reviewsToolStripMenuItem
             // 
             this.reviewsToolStripMenuItem.Name = "reviewsToolStripMenuItem";
-            this.reviewsToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.reviewsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.reviewsToolStripMenuItem.Text = "Reviews";
             // 
             // roomDiscountToolStripMenuItem
             // 
             this.roomDiscountToolStripMenuItem.Name = "roomDiscountToolStripMenuItem";
-            this.roomDiscountToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.roomDiscountToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.roomDiscountToolStripMenuItem.Text = "Room Discount";
             // 
             // storedProceduresToolStripMenuItem
@@ -156,6 +171,7 @@ namespace HotelP.Forms
             this.fetchAllProceduresToolStripMenuItem.Name = "fetchAllProceduresToolStripMenuItem";
             this.fetchAllProceduresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.fetchAllProceduresToolStripMenuItem.Text = "Fetch all Procedures";
+            this.fetchAllProceduresToolStripMenuItem.Click += new System.EventHandler(this.fetchAllProceduresToolStripMenuItem_Click);
             // 
             // queriesToolStripMenuItem
             // 
@@ -164,80 +180,43 @@ namespace HotelP.Forms
             this.queriesToolStripMenuItem.Name = "queriesToolStripMenuItem";
             this.queriesToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.queriesToolStripMenuItem.Text = "Queries";
+            this.queriesToolStripMenuItem.Click += new System.EventHandler(this.queriesToolStripMenuItem_Click);
             // 
             // fetchAllQueriesToolStripMenuItem
             // 
             this.fetchAllQueriesToolStripMenuItem.Name = "fetchAllQueriesToolStripMenuItem";
-            this.fetchAllQueriesToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.fetchAllQueriesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.fetchAllQueriesToolStripMenuItem.Text = "Fetch all Queries";
             // 
-            // DetailsBtn
+            // bookingToolStripMenuItem
             // 
-            this.DetailsBtn.Location = new System.Drawing.Point(12, 502);
-            this.DetailsBtn.Name = "DetailsBtn";
-            this.DetailsBtn.Size = new System.Drawing.Size(135, 42);
-            this.DetailsBtn.TabIndex = 10;
-            this.DetailsBtn.Text = "Get Details";
-            this.DetailsBtn.UseVisualStyleBackColor = true;
-            this.DetailsBtn.Click += new System.EventHandler(this.DetailsBtn_Click);
+            this.bookingToolStripMenuItem.Name = "bookingToolStripMenuItem";
+            this.bookingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.bookingToolStripMenuItem.Text = "Booking";
+            this.bookingToolStripMenuItem.Click += new System.EventHandler(this.bookingToolStripMenuItem_Click);
             // 
-            // ClearViewBtn
+            // textBox2
             // 
-            this.ClearViewBtn.Location = new System.Drawing.Point(164, 502);
-            this.ClearViewBtn.Name = "ClearViewBtn";
-            this.ClearViewBtn.Size = new System.Drawing.Size(135, 42);
-            this.ClearViewBtn.TabIndex = 11;
-            this.ClearViewBtn.Text = "Clear View";
-            this.ClearViewBtn.UseVisualStyleBackColor = true;
-            this.ClearViewBtn.Click += new System.EventHandler(this.ClearViewBtn_Click);
+            this.textBox2.BackColor = System.Drawing.Color.LightSalmon;
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(12, 359);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(578, 272);
+            this.textBox2.TabIndex = 10;
+            this.textBox2.Text = resources.GetString("textBox2.Text");
             // 
-            // STListbox
-            // 
-            this.STListbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.STListbox.FormattingEnabled = true;
-            this.STListbox.ItemHeight = 20;
-            this.STListbox.Location = new System.Drawing.Point(12, 95);
-            this.STListbox.Name = "STListbox";
-            this.STListbox.Size = new System.Drawing.Size(299, 384);
-            this.STListbox.TabIndex = 12;
-            this.STListbox.DoubleClick += new System.EventHandler(this.STListbox_DoubleClick);
-            // 
-            // StoredProcedureDefinitionTextBox
-            // 
-            this.StoredProcedureDefinitionTextBox.BackColor = System.Drawing.SystemColors.InfoText;
-            this.StoredProcedureDefinitionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StoredProcedureDefinitionTextBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.StoredProcedureDefinitionTextBox.Location = new System.Drawing.Point(350, 95);
-            this.StoredProcedureDefinitionTextBox.Multiline = true;
-            this.StoredProcedureDefinitionTextBox.Name = "StoredProcedureDefinitionTextBox";
-            this.StoredProcedureDefinitionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.StoredProcedureDefinitionTextBox.Size = new System.Drawing.Size(492, 473);
-            this.StoredProcedureDefinitionTextBox.TabIndex = 13;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(243, 47);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(345, 31);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "STORED PROCEDURES";
-            // 
-            // StoredProcedure
+            // FirstPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSalmon;
-            this.ClientSize = new System.Drawing.Size(854, 580);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.StoredProcedureDefinitionTextBox);
-            this.Controls.Add(this.STListbox);
-            this.Controls.Add(this.ClearViewBtn);
-            this.Controls.Add(this.DetailsBtn);
+            this.ClientSize = new System.Drawing.Size(1167, 643);
+            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.menuStrip1);
-            this.Name = "StoredProcedure";
-            this.Text = "StoreProcedure";
+            this.Controls.Add(this.textBox1);
+            this.Name = "FirstPage";
+            this.Text = "FirstPage";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -246,6 +225,8 @@ namespace HotelP.Forms
         }
 
         #endregion
+
+        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
@@ -262,10 +243,7 @@ namespace HotelP.Forms
         private System.Windows.Forms.ToolStripMenuItem fetchAllProceduresToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem queriesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fetchAllQueriesToolStripMenuItem;
-        private System.Windows.Forms.Button DetailsBtn;
-        private System.Windows.Forms.Button ClearViewBtn;
-        private System.Windows.Forms.ListBox STListbox;
-        private System.Windows.Forms.TextBox StoredProcedureDefinitionTextBox;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem bookingToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }

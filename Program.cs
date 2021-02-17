@@ -17,7 +17,7 @@ namespace HotelP
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
            // Application.Run(new Forms.BookingForm());
-            Application.Run(new Forms.BookingForm());
+            Application.Run(new Forms.FirstPage());
         }
     }
 }

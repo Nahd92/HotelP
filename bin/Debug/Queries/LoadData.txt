@@ -61,8 +61,7 @@ SET @a = @a + 1
 END;
 
 
---Cost Column -- 
-
+--Cost Column --
 
 -- 1 CustomerMax
 DECLARE @r int

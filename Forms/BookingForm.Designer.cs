@@ -62,9 +62,6 @@ namespace HotelP.Forms
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.paymentsTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,12 +72,10 @@ namespace HotelP.Forms
             this.paymentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reviewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.roomDiscountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.storedProceduresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fetchAllProceduresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.queriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fetchAllQueriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -221,7 +216,7 @@ namespace HotelP.Forms
             this.findBookingBtn.Name = "findBookingBtn";
             this.findBookingBtn.Size = new System.Drawing.Size(118, 31);
             this.findBookingBtn.TabIndex = 4;
-            this.findBookingBtn.Text = "Find Booking";
+            this.findBookingBtn.Text = "Find by Id";
             this.findBookingBtn.UseVisualStyleBackColor = true;
             this.findBookingBtn.Click += new System.EventHandler(this.findBookingBtn_Click);
             // 
@@ -390,10 +385,8 @@ namespace HotelP.Forms
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
             this.toolStripMenuItem2,
-            this.toolsToolStripMenuItem,
             this.storedProceduresToolStripMenuItem,
-            this.queriesToolStripMenuItem,
-            this.helpToolStripMenuItem});
+            this.queriesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1145, 24);
@@ -403,36 +396,15 @@ namespace HotelP.Forms
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripMenuItem,
-            this.openToolStripMenuItem,
-            this.saveToolStripMenuItem,
             this.closeToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
             this.toolStripMenuItem1.Text = "File";
             // 
-            // newToolStripMenuItem
-            // 
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.newToolStripMenuItem.Text = "New";
-            // 
-            // openToolStripMenuItem
-            // 
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.openToolStripMenuItem.Text = "Open MSSM";
-            // 
-            // saveToolStripMenuItem
-            // 
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.saveToolStripMenuItem.Text = "Save";
-            // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.closeToolStripMenuItem.Text = "Close";
             // 
             // toolStripMenuItem2
@@ -453,56 +425,51 @@ namespace HotelP.Forms
             // paymentsTableToolStripMenuItem
             // 
             this.paymentsTableToolStripMenuItem.Name = "paymentsTableToolStripMenuItem";
-            this.paymentsTableToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.paymentsTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.paymentsTableToolStripMenuItem.Text = "Payments";
+            this.paymentsTableToolStripMenuItem.Click += new System.EventHandler(this.paymentsTableToolStripMenuItem_Click);
             // 
             // roomTableToolStripMenuItem
             // 
             this.roomTableToolStripMenuItem.Name = "roomTableToolStripMenuItem";
-            this.roomTableToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.roomTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.roomTableToolStripMenuItem.Text = "Rooms";
             // 
             // customerTableToolStripMenuItem
             // 
             this.customerTableToolStripMenuItem.Name = "customerTableToolStripMenuItem";
-            this.customerTableToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.customerTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.customerTableToolStripMenuItem.Text = "Customers";
             // 
             // facilitesToolStripMenuItem
             // 
             this.facilitesToolStripMenuItem.Name = "facilitesToolStripMenuItem";
-            this.facilitesToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.facilitesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.facilitesToolStripMenuItem.Text = "Facilites";
             // 
             // hotelToolStripMenuItem
             // 
             this.hotelToolStripMenuItem.Name = "hotelToolStripMenuItem";
-            this.hotelToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.hotelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.hotelToolStripMenuItem.Text = "Hotel";
             // 
             // paymentsToolStripMenuItem
             // 
             this.paymentsToolStripMenuItem.Name = "paymentsToolStripMenuItem";
-            this.paymentsToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.paymentsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.paymentsToolStripMenuItem.Text = "Staffs";
             // 
             // reviewsToolStripMenuItem
             // 
             this.reviewsToolStripMenuItem.Name = "reviewsToolStripMenuItem";
-            this.reviewsToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.reviewsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.reviewsToolStripMenuItem.Text = "Reviews";
             // 
             // roomDiscountToolStripMenuItem
             // 
             this.roomDiscountToolStripMenuItem.Name = "roomDiscountToolStripMenuItem";
-            this.roomDiscountToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.roomDiscountToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.roomDiscountToolStripMenuItem.Text = "Room Discount";
-            // 
-            // toolsToolStripMenuItem
-            // 
-            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
-            this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // storedProceduresToolStripMenuItem
             // 
@@ -533,12 +500,6 @@ namespace HotelP.Forms
             this.fetchAllQueriesToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.fetchAllQueriesToolStripMenuItem.Text = "Fetch all Queries";
             this.fetchAllQueriesToolStripMenuItem.Click += new System.EventHandler(this.fetchAllQueriesToolStripMenuItem_Click);
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
             // 
             // contextMenuStrip1
             // 
@@ -606,19 +567,14 @@ namespace HotelP.Forms
         private System.Windows.Forms.Button ResetViewButton;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem paymentsTableToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem roomTableToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem customerTableToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem storedProceduresToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem queriesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fetchAllQueriesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem facilitesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hotelToolStripMenuItem;

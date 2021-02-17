@@ -45,7 +45,6 @@ namespace HotelP.Helpers.Queries
             {
                 content.Add(fi.ToString());
             }
-
             return content;
         }
     }

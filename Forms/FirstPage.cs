@@ -40,5 +40,12 @@ namespace HotelP.Forms
             var quires = new Queries();
             quires.ShowDialog();
         }
+
+        private void customerTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var customer = new CustomerForm();
+            customer.Show();
+            this.Hide();
+        }
     }
 }

@@ -39,6 +39,10 @@ namespace HotelP.Forms
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnInsert = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.CreateCustomerBtn = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.tNumberOfExtraBeds = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.findBookingBtn = new System.Windows.Forms.Button();
             this.tBookingID = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -77,12 +81,6 @@ namespace HotelP.Forms
             this.queriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fetchAllQueriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tNumberOfExtraBeds = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.CreateCustomerBtn = new System.Windows.Forms.Button();
-            this.CreatePaymentBtn = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -189,8 +187,6 @@ namespace HotelP.Forms
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.CreatePaymentBtn);
-            this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.CreateCustomerBtn);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.tNumberOfExtraBeds);
@@ -222,6 +218,41 @@ namespace HotelP.Forms
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Booking";
+            // 
+            // CreateCustomerBtn
+            // 
+            this.CreateCustomerBtn.Location = new System.Drawing.Point(78, 80);
+            this.CreateCustomerBtn.Name = "CreateCustomerBtn";
+            this.CreateCustomerBtn.Size = new System.Drawing.Size(130, 26);
+            this.CreateCustomerBtn.TabIndex = 22;
+            this.CreateCustomerBtn.Text = "Create Customer";
+            this.CreateCustomerBtn.UseVisualStyleBackColor = true;
+            this.CreateCustomerBtn.Click += new System.EventHandler(this.CreateCustomerBtn_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(46, 57);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(194, 13);
+            this.label13.TabIndex = 23;
+            this.label13.Text = "Do you need to create a Customer first?";
+            // 
+            // tNumberOfExtraBeds
+            // 
+            this.tNumberOfExtraBeds.Location = new System.Drawing.Point(810, 112);
+            this.tNumberOfExtraBeds.Name = "tNumberOfExtraBeds";
+            this.tNumberOfExtraBeds.Size = new System.Drawing.Size(100, 20);
+            this.tNumberOfExtraBeds.TabIndex = 22;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(717, 116);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(57, 13);
+            this.label12.TabIndex = 21;
+            this.label12.Text = "Extra beds";
             // 
             // findBookingBtn
             // 
@@ -438,14 +469,14 @@ namespace HotelP.Forms
             // paymentsTableToolStripMenuItem
             // 
             this.paymentsTableToolStripMenuItem.Name = "paymentsTableToolStripMenuItem";
-            this.paymentsTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.paymentsTableToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.paymentsTableToolStripMenuItem.Text = "Payments";
             this.paymentsTableToolStripMenuItem.Click += new System.EventHandler(this.paymentsTableToolStripMenuItem_Click);
             // 
             // roomTableToolStripMenuItem
             // 
             this.roomTableToolStripMenuItem.Name = "roomTableToolStripMenuItem";
-            this.roomTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.roomTableToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.roomTableToolStripMenuItem.Text = "Rooms";
             // 
             // customerTableToolStripMenuItem
@@ -453,35 +484,36 @@ namespace HotelP.Forms
             this.customerTableToolStripMenuItem.Name = "customerTableToolStripMenuItem";
             this.customerTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.customerTableToolStripMenuItem.Text = "Customers";
+            this.customerTableToolStripMenuItem.Click += new System.EventHandler(this.customerTableToolStripMenuItem_Click);
             // 
             // facilitesToolStripMenuItem
             // 
             this.facilitesToolStripMenuItem.Name = "facilitesToolStripMenuItem";
-            this.facilitesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.facilitesToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.facilitesToolStripMenuItem.Text = "Facilites";
             // 
             // hotelToolStripMenuItem
             // 
             this.hotelToolStripMenuItem.Name = "hotelToolStripMenuItem";
-            this.hotelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hotelToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.hotelToolStripMenuItem.Text = "Hotel";
             // 
             // paymentsToolStripMenuItem
             // 
             this.paymentsToolStripMenuItem.Name = "paymentsToolStripMenuItem";
-            this.paymentsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.paymentsToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.paymentsToolStripMenuItem.Text = "Staffs";
             // 
             // reviewsToolStripMenuItem
             // 
             this.reviewsToolStripMenuItem.Name = "reviewsToolStripMenuItem";
-            this.reviewsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.reviewsToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.reviewsToolStripMenuItem.Text = "Reviews";
             // 
             // roomDiscountToolStripMenuItem
             // 
             this.roomDiscountToolStripMenuItem.Name = "roomDiscountToolStripMenuItem";
-            this.roomDiscountToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.roomDiscountToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.roomDiscountToolStripMenuItem.Text = "Room Discount";
             // 
             // storedProceduresToolStripMenuItem
@@ -518,58 +550,6 @@ namespace HotelP.Forms
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // tNumberOfExtraBeds
-            // 
-            this.tNumberOfExtraBeds.Location = new System.Drawing.Point(810, 112);
-            this.tNumberOfExtraBeds.Name = "tNumberOfExtraBeds";
-            this.tNumberOfExtraBeds.Size = new System.Drawing.Size(100, 20);
-            this.tNumberOfExtraBeds.TabIndex = 22;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(717, 116);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(57, 13);
-            this.label12.TabIndex = 21;
-            this.label12.Text = "Extra beds";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(37, 21);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(194, 13);
-            this.label13.TabIndex = 23;
-            this.label13.Text = "Do you need to create a Customer first?";
-            // 
-            // CreateCustomerBtn
-            // 
-            this.CreateCustomerBtn.Location = new System.Drawing.Point(69, 44);
-            this.CreateCustomerBtn.Name = "CreateCustomerBtn";
-            this.CreateCustomerBtn.Size = new System.Drawing.Size(130, 26);
-            this.CreateCustomerBtn.TabIndex = 22;
-            this.CreateCustomerBtn.Text = "Create Customer";
-            this.CreateCustomerBtn.UseVisualStyleBackColor = true;
-            // 
-            // CreatePaymentBtn
-            // 
-            this.CreatePaymentBtn.Location = new System.Drawing.Point(38, 107);
-            this.CreatePaymentBtn.Name = "CreatePaymentBtn";
-            this.CreatePaymentBtn.Size = new System.Drawing.Size(190, 26);
-            this.CreatePaymentBtn.TabIndex = 24;
-            this.CreatePaymentBtn.Text = "Create Payment";
-            this.CreatePaymentBtn.UseVisualStyleBackColor = true;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(37, 83);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(191, 13);
-            this.label14.TabIndex = 25;
-            this.label14.Text = "Do you need to create a Payment first?";
             // 
             // BookingForm
             // 
@@ -649,8 +629,6 @@ namespace HotelP.Forms
         private System.Windows.Forms.ToolStripMenuItem fetchAllProceduresToolStripMenuItem;
         private System.Windows.Forms.TextBox tNumberOfExtraBeds;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button CreatePaymentBtn;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button CreateCustomerBtn;
         private System.Windows.Forms.Label label13;
     }

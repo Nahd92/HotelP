@@ -31,6 +31,8 @@ namespace HotelP.Forms
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            
+           
             ISession session = SessionFactoryService.OpenSession;
 
             using (ITransaction transaction = session.BeginTransaction())
@@ -198,7 +200,18 @@ namespace HotelP.Forms
 
             SetTextBoxesToEmpty();
             dataGridView1.DataSource = HelperClass.LoadBookingData();
+        }
 
+        private void CreateCustomerBtn_Click(object sender, EventArgs e)
+        {
+            var customer = new CustomerForm();
+            customer.ShowDialog();
+        }
+
+        private void customerTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var customer = new CustomerForm();
+            customer.ShowDialog();
         }
     }
 }

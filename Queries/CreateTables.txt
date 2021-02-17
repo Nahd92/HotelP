@@ -3,6 +3,7 @@ CREATE TABLE Customer(
 Customer_ID INT PRIMARY KEY IDENTITY(1,1),
 FirstName varchar(50),
 LastName varchar(50),
+Address varchar(50),
 EmailAddres varchar(50),
 PhoneNumber nvarchar(50),
 ContactPerson varchar(50));
@@ -66,7 +67,7 @@ Cost int
 );
 
 DROP TABLE IF EXISTS Hotel
-CREATE TABLE Hotel(
+CREATE TABLE Hotels(
 Hotel_ID INT PRIMARY KEY IDENTITY(1,1),
 Name varchar(50)
 );
@@ -86,7 +87,7 @@ Customer_ID int FOREIGN KEY REFERENCES Customer(Customer_ID)
 );
 
 DROP TABLE IF EXISTS RoomDiscount
-CREATE TABLE RoomDiscount(
+CREATE TABLE RoomDiscounts(
 RoomDiscount_ID INT PRIMARY KEY IDENTITY(1,1),
 DiscountCode varchar(50),
 DiscountValue int

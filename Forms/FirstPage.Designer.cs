@@ -43,11 +43,11 @@ namespace HotelP.Forms
             this.paymentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reviewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.roomDiscountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bookingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.storedProceduresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fetchAllProceduresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.queriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fetchAllQueriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bookingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -127,6 +127,7 @@ namespace HotelP.Forms
             this.customerTableToolStripMenuItem.Name = "customerTableToolStripMenuItem";
             this.customerTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.customerTableToolStripMenuItem.Text = "Customers";
+            this.customerTableToolStripMenuItem.Click += new System.EventHandler(this.customerTableToolStripMenuItem_Click);
             // 
             // facilitesToolStripMenuItem
             // 
@@ -158,6 +159,13 @@ namespace HotelP.Forms
             this.roomDiscountToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.roomDiscountToolStripMenuItem.Text = "Room Discount";
             // 
+            // bookingToolStripMenuItem
+            // 
+            this.bookingToolStripMenuItem.Name = "bookingToolStripMenuItem";
+            this.bookingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.bookingToolStripMenuItem.Text = "Booking";
+            this.bookingToolStripMenuItem.Click += new System.EventHandler(this.bookingToolStripMenuItem_Click);
+            // 
             // storedProceduresToolStripMenuItem
             // 
             this.storedProceduresToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -185,15 +193,8 @@ namespace HotelP.Forms
             // fetchAllQueriesToolStripMenuItem
             // 
             this.fetchAllQueriesToolStripMenuItem.Name = "fetchAllQueriesToolStripMenuItem";
-            this.fetchAllQueriesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fetchAllQueriesToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.fetchAllQueriesToolStripMenuItem.Text = "Fetch all Queries";
-            // 
-            // bookingToolStripMenuItem
-            // 
-            this.bookingToolStripMenuItem.Name = "bookingToolStripMenuItem";
-            this.bookingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.bookingToolStripMenuItem.Text = "Booking";
-            this.bookingToolStripMenuItem.Click += new System.EventHandler(this.bookingToolStripMenuItem_Click);
             // 
             // textBox2
             // 

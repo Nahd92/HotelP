@@ -74,6 +74,12 @@
     <Compile Include="Forms\BookingForm.Designer.cs">
       <DependentUpon>BookingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CustomerForm.Designer.cs">
+      <DependentUpon>CustomerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FirstPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +111,7 @@
       <DependentUpon>StoredProcedure.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\BookingHelper\HelperClass.cs" />
+    <Compile Include="Helpers\CustomerHelper\CustomerHelper.cs" />
     <Compile Include="Helpers\LoginHelper\LoginHelper.cs" />
     <Compile Include="Helpers\PaymentsHelper\PaymentsHelper.cs" />
     <Compile Include="Helpers\Queries\QueriesHelper.cs" />
@@ -125,6 +132,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TestDBDataSet.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\CustomerForm.resx">
+      <DependentUpon>CustomerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FirstPage.resx">
       <DependentUpon>FirstPage.cs</DependentUpon>
     </EmbeddedResource>

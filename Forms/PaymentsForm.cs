@@ -27,5 +27,10 @@ namespace HotelP.Forms
         {
             dataGridView1.DataSource = "";
         }
+
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -120,15 +120,4 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="textBox2.Text" xml:space="preserve">
-    <value>How to: 
-Go to Queries and copy all text in every file, start with CreateDatabase and end with LoadData.
-
-Once you created a database:
-You go to appsettings and either add your own database connectionsString OR use existing one with the password
-Administrator have given you. 
-
-:) 
-</value>
-  </data>
 </root>

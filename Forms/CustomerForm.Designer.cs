@@ -373,6 +373,7 @@ namespace HotelP.Forms
             this.ResetViewButton.TabIndex = 10;
             this.ResetViewButton.Text = "Reset View";
             this.ResetViewButton.UseVisualStyleBackColor = true;
+            this.ResetViewButton.Click += new System.EventHandler(this.ResetViewButton_Click);
             // 
             // LoadAllButton
             // 

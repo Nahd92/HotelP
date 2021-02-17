@@ -18,6 +18,7 @@ namespace HotelP.Model
         public virtual DateTime BookingDate { get; set; }
         public virtual string DiscountCode { get; set; }
         public virtual int TotalCost { get; set; }
+        public virtual int NumberOfExtraBeds { get; set; }
 
 
 

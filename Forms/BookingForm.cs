@@ -16,6 +16,7 @@ namespace HotelP.Forms
         public BookingForm()
         {
             InitializeComponent();
+            DisableAllInputs();
         }
 
         private void LoadAllButton_Click(object sender, EventArgs e)
@@ -30,33 +31,45 @@ namespace HotelP.Forms
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            
-           
-            ISession session = SessionFactoryService.OpenSession;
+        {      
 
+          HelperClass.UpdateBooking(int.Parse(tBookingID.Text), int.Parse(tCustomerID.Text), int.Parse(tPaymentsID.Text), int.Parse(tRoomID.Text), 
+                  tCheckInDate.Text, tCheckOutDate.Text,
+                int.Parse(tNumberOfGuests.Text), tDiscountCode.Text, int.Parse(tNumberOfExtraBeds.Text));
+                SetTextBoxesToEmpty();
+                    dataGridView1.DataSource = HelperClass.LoadBookingData();       
+        }
+        private void customerTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var customer = new CustomerForm();
+            customer.ShowDialog();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            ISession session = SessionFactoryService.OpenSession;
             using (ITransaction transaction = session.BeginTransaction())
             {
                 try
                 {
-                    IQuery query = session.CreateQuery("FROM Booking WHERE booking_ID = '" + tBookingID.Text + "'");
-                    transaction.Commit();
+                    var bookingData = HelperClass.GetById(tBookingID.Text);
+                    if (bookingData != null)
+                    {
+                        SetTextBoxesToData(bookingData);
+                        dataGridView1.DataSource = HelperClass.LoadBookingWithID(bookingData.Booking_ID.ToString());
 
-                    dataGridView1.DataSource = ""; // EJ klar
-
-                    SetTextBoxesToEmpty();
-
+                        HelperClass.DeleteCustomer(tBookingID.Text);
+                        SetTextBoxesToEmpty();
+                    }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     transaction.Rollback();
-                    MessageBox.Show(ex.Message);
-                    throw ex;
+                    MessageBox.Show("No record found with this id", "No data Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
 
-    
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1.RowCount <= 1 || e.RowIndex <= 0)
@@ -112,6 +125,7 @@ namespace HotelP.Forms
             tNumberOfGuests.Text = "";
             tTotalCost.Text = "";
         }
+
         private void SetTextBoxesToData(Booking booking)
         {
             tCustomerID.Text = booking.Customer_ID.ToString();
@@ -208,10 +222,25 @@ namespace HotelP.Forms
             customer.ShowDialog();
         }
 
-        private void customerTableToolStripMenuItem_Click(object sender, EventArgs e)
+      
+
+        private void CreateBookingBtn_Click(object sender, EventArgs e)
         {
-            var customer = new CustomerForm();
-            customer.ShowDialog();
+            tBookingDate.Enabled = true;
+            tCheckInDate.Enabled = true;
+            tCheckOutDate.Enabled = true;
+            tDiscountCode.Enabled = true;
+            tRoomID.Enabled = false;
+            tPaymentsID.Enabled = true;
+            tNumberOfGuests.Enabled = true;
+            tTotalCost.Enabled = false;
+            tCustomerID.Enabled = true;
+            tNumberOfExtraBeds.Enabled = true;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            EnableAllInputs();
         }
     }
 }

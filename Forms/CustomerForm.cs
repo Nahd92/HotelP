@@ -102,7 +102,7 @@ namespace HotelP.Forms
         private void btnInsert_Click(object sender, EventArgs e)
         {
             CustomerHelper.CreateCustomer(tFirstname.Text, tLastName.Text, tEmail.Text, tAddress.Text, int.Parse(tPhoneNumber.Text),
-                tContactPerson.Text);;
+                tContactPerson.Text);
 
             SetTextBoxesToEmpty();
             CustomerGridVIew.DataSource = CustomerHelper.LoadBookingData();
@@ -122,7 +122,10 @@ namespace HotelP.Forms
         {
             CustomerGridVIew.DataSource = CustomerHelper.LoadBookingData();
         }
-
+        private void ResetViewButton_Click(object sender, EventArgs e)
+        {
+            CustomerGridVIew.DataSource = "";
+        }
 
 
 
@@ -148,6 +151,6 @@ namespace HotelP.Forms
             tPhoneNumber.Text = customer.PhoneNumber.ToString();
         }
 
-     
+        
     }
 }

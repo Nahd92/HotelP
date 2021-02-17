@@ -29,7 +29,6 @@ namespace HotelP.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FirstPage));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,7 +47,6 @@ namespace HotelP.Forms
             this.fetchAllProceduresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.queriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fetchAllQueriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -112,57 +110,57 @@ namespace HotelP.Forms
             // paymentsTableToolStripMenuItem
             // 
             this.paymentsTableToolStripMenuItem.Name = "paymentsTableToolStripMenuItem";
-            this.paymentsTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.paymentsTableToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.paymentsTableToolStripMenuItem.Text = "Payments";
             this.paymentsTableToolStripMenuItem.Click += new System.EventHandler(this.paymentsTableToolStripMenuItem_Click);
             // 
             // roomTableToolStripMenuItem
             // 
             this.roomTableToolStripMenuItem.Name = "roomTableToolStripMenuItem";
-            this.roomTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.roomTableToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.roomTableToolStripMenuItem.Text = "Rooms";
             // 
             // customerTableToolStripMenuItem
             // 
             this.customerTableToolStripMenuItem.Name = "customerTableToolStripMenuItem";
-            this.customerTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.customerTableToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.customerTableToolStripMenuItem.Text = "Customers";
             this.customerTableToolStripMenuItem.Click += new System.EventHandler(this.customerTableToolStripMenuItem_Click);
             // 
             // facilitesToolStripMenuItem
             // 
             this.facilitesToolStripMenuItem.Name = "facilitesToolStripMenuItem";
-            this.facilitesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.facilitesToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.facilitesToolStripMenuItem.Text = "Facilites";
             // 
             // hotelToolStripMenuItem
             // 
             this.hotelToolStripMenuItem.Name = "hotelToolStripMenuItem";
-            this.hotelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hotelToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.hotelToolStripMenuItem.Text = "Hotel";
             // 
             // paymentsToolStripMenuItem
             // 
             this.paymentsToolStripMenuItem.Name = "paymentsToolStripMenuItem";
-            this.paymentsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.paymentsToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.paymentsToolStripMenuItem.Text = "Staffs";
             // 
             // reviewsToolStripMenuItem
             // 
             this.reviewsToolStripMenuItem.Name = "reviewsToolStripMenuItem";
-            this.reviewsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.reviewsToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.reviewsToolStripMenuItem.Text = "Reviews";
             // 
             // roomDiscountToolStripMenuItem
             // 
             this.roomDiscountToolStripMenuItem.Name = "roomDiscountToolStripMenuItem";
-            this.roomDiscountToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.roomDiscountToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.roomDiscountToolStripMenuItem.Text = "Room Discount";
             // 
             // bookingToolStripMenuItem
             // 
             this.bookingToolStripMenuItem.Name = "bookingToolStripMenuItem";
-            this.bookingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.bookingToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.bookingToolStripMenuItem.Text = "Booking";
             this.bookingToolStripMenuItem.Click += new System.EventHandler(this.bookingToolStripMenuItem_Click);
             // 
@@ -196,24 +194,12 @@ namespace HotelP.Forms
             this.fetchAllQueriesToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.fetchAllQueriesToolStripMenuItem.Text = "Fetch all Queries";
             // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.Color.LightSalmon;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(12, 359);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(578, 272);
-            this.textBox2.TabIndex = 10;
-            this.textBox2.Text = resources.GetString("textBox2.Text");
-            // 
             // FirstPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSalmon;
             this.ClientSize = new System.Drawing.Size(1167, 643);
-            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.textBox1);
             this.Name = "FirstPage";
@@ -245,6 +231,5 @@ namespace HotelP.Forms
         private System.Windows.Forms.ToolStripMenuItem queriesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fetchAllQueriesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bookingToolStripMenuItem;
-        private System.Windows.Forms.TextBox textBox2;
     }
 }

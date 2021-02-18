@@ -86,12 +86,6 @@
     <Compile Include="Forms\FirstPage.Designer.cs">
       <DependentUpon>FirstPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\LoginPage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\LoginPage.Designer.cs">
-      <DependentUpon>LoginPage.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\PaymentsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,7 +112,6 @@
     </Compile>
     <Compile Include="Helpers\BookingHelper\HelperClass.cs" />
     <Compile Include="Helpers\CustomerHelper\CustomerHelper.cs" />
-    <Compile Include="Helpers\LoginHelper\LoginHelper.cs" />
     <Compile Include="Helpers\PaymentsHelper\PaymentsHelper.cs" />
     <Compile Include="Helpers\Queries\QueriesHelper.cs" />
     <Compile Include="Helpers\RoomsHelper\RoomHelper.cs" />
@@ -127,12 +120,10 @@
     <Compile Include="Mappings\CustomerMapping.cs" />
     <Compile Include="Mappings\PaymentsMapping.cs" />
     <Compile Include="Mappings\RoomMapping.cs" />
-    <Compile Include="Mappings\UserLoginsMapping.cs" />
     <Compile Include="Model\Booking.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\Payments.cs" />
     <Compile Include="Model\Rooms.cs" />
-    <Compile Include="Model\UserLogins.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SessionFactoryService.cs" />
@@ -146,9 +137,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FirstPage.resx">
       <DependentUpon>FirstPage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LoginPage.resx">
-      <DependentUpon>LoginPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PaymentsForm.resx">
       <DependentUpon>PaymentsForm.cs</DependentUpon>

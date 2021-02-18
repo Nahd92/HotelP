@@ -33,6 +33,9 @@ namespace HotelP.Forms
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.CreateBookingBtn = new System.Windows.Forms.Button();
             this.ResetViewButton = new System.Windows.Forms.Button();
             this.LoadAllButton = new System.Windows.Forms.Button();
             this.CreateCustomerBtn = new System.Windows.Forms.Button();
@@ -55,12 +58,9 @@ namespace HotelP.Forms
             this.fetchAllQueriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.PaymentBtn = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
-            this.CreateBookingBtn = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tNumberOfExtraBeds = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -139,6 +139,36 @@ namespace HotelP.Forms
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Control";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(95, 49);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(264, 20);
+            this.label14.TabIndex = 23;
+            this.label14.Text = "Click Button to enable correct inputs";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(616, 36);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(92, 44);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Update booking";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // CreateBookingBtn
+            // 
+            this.CreateBookingBtn.Location = new System.Drawing.Point(458, 36);
+            this.CreateBookingBtn.Name = "CreateBookingBtn";
+            this.CreateBookingBtn.Size = new System.Drawing.Size(98, 44);
+            this.CreateBookingBtn.TabIndex = 4;
+            this.CreateBookingBtn.Text = "Create booking";
+            this.CreateBookingBtn.UseVisualStyleBackColor = true;
+            this.CreateBookingBtn.Click += new System.EventHandler(this.CreateBookingBtn_Click);
             // 
             // ResetViewButton
             // 
@@ -320,17 +350,6 @@ namespace HotelP.Forms
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Create new?";
             // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.ResetViewButton);
-            this.groupBox5.Controls.Add(this.LoadAllButton);
-            this.groupBox5.Location = new System.Drawing.Point(18, 198);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(436, 155);
-            this.groupBox5.TabIndex = 24;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Load or Reset";
-            // 
             // PaymentBtn
             // 
             this.PaymentBtn.Location = new System.Drawing.Point(249, 92);
@@ -351,35 +370,16 @@ namespace HotelP.Forms
             this.label11.TabIndex = 25;
             this.label11.Text = "Create payment?";
             // 
-            // CreateBookingBtn
+            // groupBox5
             // 
-            this.CreateBookingBtn.Location = new System.Drawing.Point(458, 36);
-            this.CreateBookingBtn.Name = "CreateBookingBtn";
-            this.CreateBookingBtn.Size = new System.Drawing.Size(98, 44);
-            this.CreateBookingBtn.TabIndex = 4;
-            this.CreateBookingBtn.Text = "Create booking";
-            this.CreateBookingBtn.UseVisualStyleBackColor = true;
-            this.CreateBookingBtn.Click += new System.EventHandler(this.CreateBookingBtn_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(616, 36);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(92, 44);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Update booking";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(95, 49);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(264, 20);
-            this.label14.TabIndex = 23;
-            this.label14.Text = "Click Button to enable correct inputs";
+            this.groupBox5.Controls.Add(this.ResetViewButton);
+            this.groupBox5.Controls.Add(this.LoadAllButton);
+            this.groupBox5.Location = new System.Drawing.Point(18, 198);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(436, 155);
+            this.groupBox5.TabIndex = 24;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Load or Reset";
             // 
             // groupBox1
             // 
@@ -453,6 +453,7 @@ namespace HotelP.Forms
             this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // tBookingID
             // 
@@ -469,6 +470,7 @@ namespace HotelP.Forms
             this.btnInsert.TabIndex = 1;
             this.btnInsert.Text = "Insert";
             this.btnInsert.UseVisualStyleBackColor = true;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnUpdate
             // 
@@ -478,6 +480,7 @@ namespace HotelP.Forms
             this.btnUpdate.TabIndex = 2;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // label10
             // 

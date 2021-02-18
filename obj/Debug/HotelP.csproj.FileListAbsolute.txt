@@ -63,6 +63,5 @@ C:\Users\Admin\Desktop\HotelProject\HotelP\obj\Debug\HotelP.csprojAssemblyRefere
 C:\Users\Admin\Desktop\HotelProject\HotelP\bin\Debug\Queries\LoadData.txt
 C:\Users\Admin\Desktop\HotelProject\HotelP\obj\Debug\HotelP.Forms.FirstPage.resources
 C:\Users\Admin\Desktop\HotelProject\HotelP\obj\Debug\HotelP.Forms.PaymentsForm.resources
-C:\Users\Admin\Desktop\HotelProject\HotelP\obj\Debug\HotelP.Forms.LoginPage.resources
 C:\Users\Admin\Desktop\HotelProject\HotelP\obj\Debug\HotelP.Forms.CustomerForm.resources
 C:\Users\Admin\Desktop\HotelProject\HotelP\obj\Debug\HotelP.Forms.RoomsForm.resources

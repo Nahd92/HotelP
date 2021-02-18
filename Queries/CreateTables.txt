@@ -92,11 +92,3 @@ RoomDiscount_ID INT PRIMARY KEY IDENTITY(1,1),
 DiscountCode varchar(50),
 DiscountValue int
 );
-
-DROP TABLE IF EXISTS UserLogins
-CREATE TABLE UserLogins(
-UserLogins int PRIMARY KEY IDENTITY(1,1),
-Username varchar(50),
-Password varchar(50),
-Role varchar(50)
-);

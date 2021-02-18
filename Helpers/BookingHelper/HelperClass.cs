@@ -82,7 +82,7 @@ namespace HotelP.Helpers.BookingHelper
         }
         public static void UpdateBooking(int Booking_ID, int CustomerId, int PaymentsId, int roomId,
             string CheckInDate, string CheckOutDate, int NumberOfGuests,
-            string discountCode, int NumberOfExtraBeds)
+            string discountCode, int NumberOfExtraBeds, int TotalCost)
         {
             ISession session = SessionFactoryService.OpenSession;
 
@@ -92,7 +92,7 @@ namespace HotelP.Helpers.BookingHelper
                 {
                     var query = session.CreateSQLQuery(" exec spUpdateReservation @Booking_ID=:Booking_ID, @CustomerID=:CustomerID, @Payments_ID=:Payments_ID," +
                         "@Room_ID=:Room_ID, @CheckInDate=:CheckInDate, @CheckOutDate=:CheckOutDate, " +
-                        "@NumberOfGuests=:NumberOfGuests, @DiscountCode=:DiscountCode, @NumberOfExtraBeds=:NumberOfExtraBeds ")
+                        "@NumberOfGuests=:NumberOfGuests, @DiscountCode=:DiscountCode, @NumberOfExtraBeds=:NumberOfExtraBeds, @TotalCost=:TotalCost ")
                         .SetParameter("Booking_ID", Booking_ID)
                         .SetParameter("CustomerID", CustomerId)
                         .SetParameter("Payments_ID", PaymentsId)
@@ -102,6 +102,7 @@ namespace HotelP.Helpers.BookingHelper
                         .SetParameter("NumberOfGuests", NumberOfGuests)
                         .SetParameter("DiscountCode", discountCode)
                         .SetParameter("NumberOfExtraBeds", NumberOfExtraBeds)
+                        .SetParameter("TotalCost", TotalCost)
                         .ExecuteUpdate();
 
                     transaction.Commit();

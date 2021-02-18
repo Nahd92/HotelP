@@ -31,11 +31,22 @@ namespace HotelP.Forms
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
-        {      
+        {
 
-          HelperClass.UpdateBooking(int.Parse(tBookingID.Text), int.Parse(tCustomerID.Text), int.Parse(tPaymentsID.Text), int.Parse(tRoomID.Text), 
-                  tCheckInDate.Text, tCheckOutDate.Text,
-                int.Parse(tNumberOfGuests.Text), tDiscountCode.Text, int.Parse(tNumberOfExtraBeds.Text));
+            if (string.IsNullOrEmpty(tNumberOfExtraBeds.Text))
+            {
+                tNumberOfExtraBeds.Text = "0";
+            }
+            if (int.Parse(tNumberOfExtraBeds.Text) > 3)
+            {
+                MessageBox.Show("We do only allow maximum 3 extra beds");
+            }
+
+                HelperClass.UpdateBooking(int.Parse(tBookingID.Text), int.Parse(tCustomerID.Text), int.Parse(tPaymentsID.Text), int.Parse(tRoomID.Text),
+              tCheckInDate.Text, tCheckOutDate.Text,
+            int.Parse(tNumberOfGuests.Text), tDiscountCode.Text, int.Parse(tNumberOfExtraBeds.Text), int.Parse(tTotalCost.Text));
+            
+      
                 SetTextBoxesToEmpty();
                     dataGridView1.DataSource = HelperClass.LoadBookingData();       
         }
@@ -176,6 +187,7 @@ namespace HotelP.Forms
             tNumberOfGuests.Enabled = true;
             tTotalCost.Enabled = true;
             tCustomerID.Enabled = true;
+            tNumberOfExtraBeds.Enabled = true;
         }
 
 
@@ -248,6 +260,8 @@ namespace HotelP.Forms
             var payments = new PaymentsForm();
             payments.ShowDialog();
         }
+
+     
     }
 }
 

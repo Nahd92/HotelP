@@ -13,7 +13,7 @@ namespace HotelP.Mappings
         public PaymentsMapping()
         {
             Id(x => x.Payments_ID);
-            Map(c => c.Customer).Column("Customer_ID").Not.LazyLoad();
+            Map(c => c.Customer_ID).Column("Customer_ID").Not.LazyLoad();
             Map(x => x.FirstName).Not.Nullable();
             Map(x => x.LastName).Not.Nullable();
             Map(x => x.CreditCard).Not.Nullable();

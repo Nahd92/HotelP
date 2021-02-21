@@ -17,7 +17,7 @@ namespace HotelP.Mappings
             Map(x => x.BookingDate).Not.Nullable();
             Map(x => x.DiscountCode).Not.Nullable();
             Map(x => x.TotalCost).Not.Nullable();
-            Map(x => x.NumberOfExtraBeds).Not.Nullable();
+            Map(x => x.NumberOfExtraBeds).Not.Nullable();            
             Table("Booking");
         }
     }

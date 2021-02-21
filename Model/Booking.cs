@@ -21,7 +21,5 @@ namespace HotelP.Model
         public virtual int NumberOfExtraBeds { get; set; }
 
 
-
-
     }
 }

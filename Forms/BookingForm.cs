@@ -39,12 +39,16 @@ namespace HotelP.Forms
             }
             if (int.Parse(tNumberOfExtraBeds.Text) > 3)
             {
-                MessageBox.Show("We do only allow maximum 3 extra beds");
+                MessageBox.Show("MAX 3 extra beds");
+            }
+            else
+            {
+             HelperClass.UpdateBooking(int.Parse(tBookingID.Text), int.Parse(tCustomerID.Text), int.Parse(tPaymentsID.Text), int.Parse(tRoomID.Text),
+           tCheckInDate.Text, tCheckOutDate.Text,
+         int.Parse(tNumberOfGuests.Text), tDiscountCode.Text, int.Parse(tNumberOfExtraBeds.Text), int.Parse(tTotalCost.Text));
             }
 
-                HelperClass.UpdateBooking(int.Parse(tBookingID.Text), int.Parse(tCustomerID.Text), int.Parse(tPaymentsID.Text), int.Parse(tRoomID.Text),
-              tCheckInDate.Text, tCheckOutDate.Text,
-            int.Parse(tNumberOfGuests.Text), tDiscountCode.Text, int.Parse(tNumberOfExtraBeds.Text), int.Parse(tTotalCost.Text));
+             
             
       
                 SetTextBoxesToEmpty();
@@ -212,14 +216,6 @@ namespace HotelP.Forms
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
-        
-           string emptyTextBoxes = string.Join(System.Environment.NewLine,
-               (
-               from T in this.Controls.OfType<TextBox>()
-               where string.IsNullOrWhiteSpace(T.Text)
-               select T.Name)
-               ).ToArray().ToString();
-
 
             HelperClass.CreateBooking(int.Parse(tCustomerID.Text), int.Parse(tPaymentsID.Text), tCheckInDate.Text, tCheckOutDate.Text,
                 int.Parse(tNumberOfGuests.Text), tDiscountCode.Text, int.Parse(tNumberOfExtraBeds.Text));
@@ -238,7 +234,7 @@ namespace HotelP.Forms
 
         private void CreateBookingBtn_Click(object sender, EventArgs e)
         {
-            tBookingDate.Enabled = true;
+            tBookingDate.Enabled = false;
             tCheckInDate.Enabled = true;
             tCheckOutDate.Enabled = true;
             tDiscountCode.Enabled = true;

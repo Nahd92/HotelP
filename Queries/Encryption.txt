@@ -1,0 +1,16 @@
+﻿/* GLÖM INTE ATT ÄNDRA DATABAS nedan efter USE !!!  */
+
+
+USE [DB_A6D32D_DhanLuisaHotel];
+GO
+CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'Newton2021';
+
+USE [DB_A6D32D_DhanLuisaHotel];
+GO
+CREATE CERTIFICATE Certificate_test WITH SUBJECT = 'Protect my data';
+GO
+CREATE SYMMETRIC KEY SymKey_test WITH ALGORITHM = AES_256 ENCRYPTION BY CERTIFICATE Certificate_test;
+
+
+EXEC spEncryptingInPayments
+

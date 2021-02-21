@@ -66,6 +66,7 @@ namespace HotelP.Forms
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
             this.toolStripMenuItem2,
@@ -192,7 +193,7 @@ namespace HotelP.Forms
             // fetchAllQueriesToolStripMenuItem
             // 
             this.fetchAllQueriesToolStripMenuItem.Name = "fetchAllQueriesToolStripMenuItem";
-            this.fetchAllQueriesToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.fetchAllQueriesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.fetchAllQueriesToolStripMenuItem.Text = "Fetch all Queries";
             // 
             // FirstPage

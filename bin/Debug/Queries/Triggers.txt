@@ -1,0 +1,191 @@
+﻿												--TRIGGERS-- 
+-- ' BOOKING ' -- 
+
+CREATE TRIGGER [dbo].[trgBookingIns]
+ON
+[dbo].[Booking] 
+AFTER INSERT
+AS
+BEGIN
+  INSERT INTO BookingHistory(date,Operation,OperationDescription)
+  SELECT GETDATE(), 'New Reservation', 'Customer ID: '+ CONVERT(VARCHAR, INS.Customer_ID) 
+  FROM INSERTED INS
+  
+END
+GO
+
+ALTER TABLE [dbo].[Booking] ENABLE TRIGGER [trgBookingIns]
+GO
+
+
+
+
+-- 'Customer' -- 
+
+CREATE TRIGGER [dbo].[trgCustomerDel]
+ON
+[dbo].[Customer]
+AFTER DELETE
+AS
+BEGIN
+  INSERT INTO CustomerHistory(Date,Operation, OperationDescription)
+  SELECT GETDATE(), 'Deleted Customer', CONVERT(VARCHAR, DEL.Customer_ID)+ ': ' + DEL.Firstname + ' ' + DEL.Lastname
+  FROM DELETED DEL
+END
+GO
+
+ALTER TABLE [dbo].[Customer] ENABLE TRIGGER [trgCustomerDel]
+GO
+-- 
+--
+--
+CREATE TRIGGER [dbo].[trgCustomerIns]
+ON
+[dbo].[Customer]
+AFTER INSERT
+AS
+BEGIN
+    INSERT INTO CustomerHistory(Date,Operation,OperationDescription)
+	SELECT GETDATE(),'New Customer', CONVERT(VARCHAR, INS.Customer_ID) + ': ' + INS.Firstname+ ' '+ INS.Lastname
+	FROM INSERTED INS
+
+END
+GO
+
+ALTER TABLE [dbo].[Customer] ENABLE TRIGGER [trgCustomerIns]
+GO
+--
+--
+--
+CREATE TRIGGER [dbo].[trgUpdCustomer]
+ON [dbo].[Customer]
+AFTER UPDATE
+AS BEGIN
+	SET NOCOUNT ON
+	DECLARE @CustomerId INT
+	DECLARE @Action VARCHAR(50)
+	
+	SELECT @CustomerId = inserted.customer_id
+	FROM inserted 
+	
+	IF UPDATE(Address)
+	SET @Action = ' New Adress'
+
+	IF UPDATE(phoneNumber)
+	SET @Action = 'New PhoneNumber'
+
+	IF UPDATE(contactPerson)
+	SET @Action = 'New ContactPerson'
+
+	IF UPDATE(FirstName)
+	SET @Action = 'New FirstName'
+
+	IF UPDATE(LastName)
+	SET @Action = 'New LastName'
+
+
+	
+	INSERT INTO CustomerHistory(date,Operation,OperationDescription)
+	VALUES(GETDATE(), 'Update on Customer', CONVERT(VARCHAR, @CustomerId) +': '+ @Action)
+ END;
+GO
+
+ALTER TABLE [dbo].[Customer] ENABLE TRIGGER [trgUpdCustomer]
+GO
+
+--
+--
+--
+
+-- 'Payments' -- 
+
+CREATE TRIGGER [dbo].[trgPaymentDel]
+ON
+[dbo].[Payments]
+AFTER DELETE
+AS
+BEGIN
+  INSERT INTO PaymentHistory(date,operation,operationDescription)
+  SELECT GETDATE(), 'Deleted Payment', CONVERT(VARCHAR,DEL.Customer_ID) +': ' + DEl.fIRSTNAME +' '+ DEL.Lastname
+  FROM DELETED DEL
+END
+GO
+
+ALTER TABLE [dbo].[Payments] ENABLE TRIGGER [trgPaymentDel]
+GO
+--
+--
+--
+CREATE TRIGGER [dbo].[trgPaymentIsn]
+ON
+[dbo].[Payments]
+AFTER INSERT
+AS
+BEGIN
+
+  INSERT INTO PaymentHistory(date,Operation,OperationDescription)
+  SELECT GETDATE(), 'New Payment', CONVERT(VARCHAR, INS.Customer_ID) + ': ' + INs.FirstName +' '+ Ins.LAstname
+  FROM INSERTED INS
+END
+GO
+
+ALTER TABLE [dbo].[Payments] ENABLE TRIGGER [trgPaymentIsn]
+GO
+
+--
+---
+---
+
+-- 'Reviews' -- 
+CREATE TRIGGER [dbo].[trgReviewDel]
+ON [dbo].[Reviews]
+AFTER INSERT
+AS	
+BEGIN
+SET NOCOUNT ON
+DECLARE @customerId INT
+DECLARE @FirstName VARCHAR(50)
+DECLARE @LastName VARCHAR(50)
+SELECT @customerid = del.Customer_Id FROM deleted del
+SET @firstName = (SELECT firstname FROM Customer WHERE Customer_ID = @customerId )
+SET @LastName = (SELECT firstname FROM Customer WHERE Customer_ID = @customerId )
+	
+	INSERT INTO CustomerHistory(Date,Operation,Operationdescription)
+	VALUES(GETDATE(), 'New Review', @customerId+': ' + @FirstName + ' ' + @LastName)
+	
+END
+GO
+
+ALTER TABLE [dbo].[Reviews] ENABLE TRIGGER [trgReviewDel]
+GO
+--
+--
+--
+
+CREATE TRIGGER [dbo].[trgReviewsIns]
+ON [dbo].[Reviews]
+AFTER INSERT
+AS	
+BEGIN
+SET NOCOUNT ON
+DECLARE @customerId INT
+DECLARE @FirstName VARCHAR(50)
+DECLARE @LastName VARCHAR(50)
+SELECT @customerid = ins.Customer_Id FROM inserted INS
+SET @firstName = (SELECT firstname FROM Customer WHERE Customer_ID = @customerId )
+SET @LastName = (SELECT firstname FROM Customer WHERE Customer_ID = @customerId )
+	
+	INSERT INTO CustomerHistory(Date,Operation,Operationdescription)
+	VALUES(GETDATE(), 'New Review', @customerId+': ' + @FirstName + ' ' + @LastName)
+	
+END
+GO
+
+ALTER TABLE [dbo].[Reviews] ENABLE TRIGGER [trgReviewsIns]
+GO
+
+---
+---
+---
+
+-- ' ' --

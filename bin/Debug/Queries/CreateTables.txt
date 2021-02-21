@@ -1,93 +1,113 @@
-DROP TABLE IF EXISTS Customer
+﻿DROP TABLE IF EXISTS Customer
 CREATE TABLE Customer(
 Customer_ID INT PRIMARY KEY IDENTITY(1,1),
-FirstName varchar(50),
-LastName varchar(50),
-EmailAddres varchar(50),
-PhoneNumber nvarchar(50),
-ContactPerson varchar(50));
+FirstName varchar(50) NOT NULL,
+LastName varchar(50) NOT NULL,
+Address varchar(50) NOT NULL,
+EmailAddres varchar(50) NOT NULL,
+PhoneNumber nvarchar(50) NOT NULL,
+ContactPerson varchar(50) NOT NULL
+);
 
 DROP TABLE IF EXISTS Payments
 CREATE TABLE Payments(
 Payments_ID INT PRIMARY KEY IDENTITY(1,1),
 Customer_ID int FOREIGN KEY REFERENCES Customer(Customer_ID),
-FirstName varchar(50),
-LastName varchar(50),
-CreditCard varchar(50),
-Date Date,
-CardNumber varchar(16),
-CVV varchar(3),
-ExpirationDate Date
+FirstName VARCHAR(50) NOT NULL,
+LastName varchar(50) NOT NULL,
+CreditCard varchar(50) NOT NULL,
+Date datetime(2, 7) NOT NULL,
+CardNumber VARBINARY(MAX) NOT NULL,
+CVV VARBINARY(MAX) NOT NULL,
+ExpirationDate varchar(20) NOT NULL
 );
 
 DROP TABLE IF EXISTS Rooms
 CREATE TABLE Rooms(
 Room_ID INT PRIMARY KEY IDENTITY(1,1),
-RoomNumber int,
-CustomerMax int,
-Available bit, 
-Cost money
+RoomNumber INT NOT NULL,
+CustomerMax INT NOT NULL,
+Available BIT NOT NULL, 
+Cost money, NOT NULL
 );
 
+ALTER TABLE [dbo].[Rooms] ADD  CONSTRAINT [dfavalible]  DEFAULT ((1)) FOR [Avaliable]
+
+
+-- BOOKING 
 DROP TABLE IF EXISTS Booking
 CREATE TABLE Booking(
 Booking_ID INT PRIMARY KEY IDENTITY(1,1),
-Customer_ID int FOREIGN KEY REFERENCES Customer(Customer_ID),
-Payments_ID int FOREIGN KEY REFERENCES Payments(Payments_ID), 
-Room_ID int FOREIGN KEY REFERENCES Room(Room_ID),
-CheckInDate Date,
-CheckOutDate Date,
-NumberOfGuests INT,
-BookingDate Date,
-DiscountCode varchar(50),
-TotalCost varchar(50) 
+Customer_ID int FOREIGN KEY REFERENCES Customer(Customer_ID) NOT NULL,
+Payments_ID int FOREIGN KEY REFERENCES Payments(Payments_ID) NOT NULL, 
+Room_ID int FOREIGN KEY REFERENCES Room(Room_ID) NOT NULL,
+CheckInDate DATE NOT NULL,
+CheckOutDate DATE NOT NULL,
+NumberOfGuests INT NOT NULL,
+BookingDate DATE NOT NULL,
+DiscountCode NVARCHAR(50) NULL,
+TotalCost VARCHAR(50) NOT NULL 
 );
+-- BOOKING CONSTRAINT 
+ALTER TABLE [dbo].[Booking] ADD  DEFAULT ('No Code') FOR [DiscountCode]
 
+
+--BOOKINGHISTORY
 DROP TABLE IF EXISTS BookingHistory
 CREATE TABLE BookingHistory(
-Date datetime,
-Operation varchar(50),
-OperationDescription varchar(50)
+Date DATETIME NULL,
+Operation varchar(50) NULL,
+OperationDescription varchar(50) NULL
 );
+
 
 DROP TABLE IF EXISTS CustomerHistory
 CREATE TABLE CustomerHistory(
-Date datetime,
-Operation varchar(50),
-OperationDescription varchar(50)
+Date DATETIME NULL,
+Operation VARCHAR(50) NULL,
+OperationDescription VARCHAR(50) NULL
 );
 
 DROP TABLE IF EXISTS Facilities 
 CREATE TABLE Facilities(
 Facilites_ID int PRIMARY KEY IDENTITY(1,1),
-Name varchar(50),
-Amount int,
-Cost int
+Name VARCHAR(50) NULL,
+Amount INT NULL,
+Cost INT NULL
 );
 
 DROP TABLE IF EXISTS Hotel
-CREATE TABLE Hotel(
+CREATE TABLE Hotels(
 Hotel_ID INT PRIMARY KEY IDENTITY(1,1),
-Name varchar(50)
+Name varchar(50) NULL
 );
 
 DROP TABLE IF EXISTS PaymentsHistory
 CREATE TABLE PaymentsHistory(
-Date datetime,
-Operation varchar(50),
-OperationDescription varchar(50)
+Date DATETIME NULL,
+Operation VARCHAR(50) NULL,
+OperationDescription VARCHAR(50) NULL
 );
 
 DROP TABLE IF EXISTS Reviews
 CREATE TABLE Reviews(
 Review_ID int PRIMARY KEY IDENTITY(1,1),
-Note varchar(255),
+Note varchar(255) NULL,
 Customer_ID int FOREIGN KEY REFERENCES Customer(Customer_ID)
 );
 
 DROP TABLE IF EXISTS RoomDiscount
-CREATE TABLE RoomDiscount(
+CREATE TABLE RoomDiscounts(
 RoomDiscount_ID INT PRIMARY KEY IDENTITY(1,1),
-DiscountCode varchar(50),
-DiscountValue int
+DiscountCode VARCHAR(50) NULL,
+DiscountValue INT NULL
+);
+
+DROP TABLE IF EXISTS Staffs
+CREATE TABLE Staffs(
+Staffs_ID INT PRIMARY KEY IDENTITY(1,1),
+FirstName VARCHAR(50) NULL,
+LastName VARCHAR(50) NULL,
+Address VARCHAR(50) NULL,
+PhoneNumber INT NULL
 );

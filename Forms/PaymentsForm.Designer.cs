@@ -49,6 +49,8 @@ namespace HotelP.Forms
             this.queriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fetchAllQueriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tCardNumber = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.findBookingBtn = new System.Windows.Forms.Button();
             this.tPaymentID = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -72,8 +74,6 @@ namespace HotelP.Forms
             this.btnInsert = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.tCardNumber = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -147,49 +147,49 @@ namespace HotelP.Forms
             // paymentsTableToolStripMenuItem
             // 
             this.paymentsTableToolStripMenuItem.Name = "paymentsTableToolStripMenuItem";
-            this.paymentsTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.paymentsTableToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.paymentsTableToolStripMenuItem.Text = "Payments";
             // 
             // roomTableToolStripMenuItem
             // 
             this.roomTableToolStripMenuItem.Name = "roomTableToolStripMenuItem";
-            this.roomTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.roomTableToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.roomTableToolStripMenuItem.Text = "Rooms";
             // 
             // customerTableToolStripMenuItem
             // 
             this.customerTableToolStripMenuItem.Name = "customerTableToolStripMenuItem";
-            this.customerTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.customerTableToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.customerTableToolStripMenuItem.Text = "Customers";
             // 
             // facilitesToolStripMenuItem
             // 
             this.facilitesToolStripMenuItem.Name = "facilitesToolStripMenuItem";
-            this.facilitesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.facilitesToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.facilitesToolStripMenuItem.Text = "Facilites";
             // 
             // hotelToolStripMenuItem
             // 
             this.hotelToolStripMenuItem.Name = "hotelToolStripMenuItem";
-            this.hotelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hotelToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.hotelToolStripMenuItem.Text = "Hotel";
             // 
             // paymentsToolStripMenuItem
             // 
             this.paymentsToolStripMenuItem.Name = "paymentsToolStripMenuItem";
-            this.paymentsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.paymentsToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.paymentsToolStripMenuItem.Text = "Staffs";
             // 
             // reviewsToolStripMenuItem
             // 
             this.reviewsToolStripMenuItem.Name = "reviewsToolStripMenuItem";
-            this.reviewsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.reviewsToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.reviewsToolStripMenuItem.Text = "Reviews";
             // 
             // roomDiscountToolStripMenuItem
             // 
             this.roomDiscountToolStripMenuItem.Name = "roomDiscountToolStripMenuItem";
-            this.roomDiscountToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.roomDiscountToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.roomDiscountToolStripMenuItem.Text = "Room Discount";
             // 
             // storedProceduresToolStripMenuItem
@@ -245,6 +245,22 @@ namespace HotelP.Forms
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Payments";
+            // 
+            // tCardNumber
+            // 
+            this.tCardNumber.Location = new System.Drawing.Point(544, 87);
+            this.tCardNumber.Name = "tCardNumber";
+            this.tCardNumber.Size = new System.Drawing.Size(100, 20);
+            this.tCardNumber.TabIndex = 43;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(452, 94);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 13);
+            this.label2.TabIndex = 42;
+            this.label2.Text = "CardNumber";
             // 
             // findBookingBtn
             // 
@@ -451,22 +467,6 @@ namespace HotelP.Forms
             this.dataGridView1.Size = new System.Drawing.Size(945, 271);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
-            // 
-            // tCardNumber
-            // 
-            this.tCardNumber.Location = new System.Drawing.Point(544, 87);
-            this.tCardNumber.Name = "tCardNumber";
-            this.tCardNumber.Size = new System.Drawing.Size(100, 20);
-            this.tCardNumber.TabIndex = 43;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(452, 94);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 13);
-            this.label2.TabIndex = 42;
-            this.label2.Text = "CardNumber";
             // 
             // PaymentsForm
             // 

@@ -1,12 +1,12 @@
 ﻿DROP TABLE IF EXISTS Customer
 CREATE TABLE Customer(
 Customer_ID INT PRIMARY KEY IDENTITY(1,1),
-FirstName varchar(50) NOT NULL,
-LastName varchar(50) NOT NULL,
-Address varchar(50) NOT NULL,
-EmailAddres varchar(50) NOT NULL,
-PhoneNumber nvarchar(50) NOT NULL,
-ContactPerson varchar(50) NOT NULL
+FirstName VARCHAR(50) NOT NULL,
+LastName VARCHAR(50) NOT NULL,
+Address VARCHAR(50) NOT NULL,
+EmailAddres VARCHAR(50) NOT NULL,
+PhoneNumber NVARCHAR(50) NOT NULL,
+ContactPerson VARCHAR(50) NOT NULL
 );
 
 DROP TABLE IF EXISTS Payments
@@ -14,12 +14,12 @@ CREATE TABLE Payments(
 Payments_ID INT PRIMARY KEY IDENTITY(1,1),
 Customer_ID int FOREIGN KEY REFERENCES Customer(Customer_ID),
 FirstName VARCHAR(50) NOT NULL,
-LastName varchar(50) NOT NULL,
-CreditCard varchar(50) NOT NULL,
-Date datetime(2, 7) NOT NULL,
+LastName VARCHAR(50) NOT NULL,
+CreditCard VARCHAR(50) NOT NULL,
+Date DATETIME(2, 7) NOT NULL,
 CardNumber VARBINARY(MAX) NOT NULL,
 CVV VARBINARY(MAX) NOT NULL,
-ExpirationDate varchar(20) NOT NULL
+ExpirationDate VARCHAR(20) NOT NULL
 );
 
 DROP TABLE IF EXISTS Rooms

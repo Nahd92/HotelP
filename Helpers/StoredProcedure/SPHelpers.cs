@@ -16,7 +16,7 @@ namespace HotelP.Helpers.StoredProcedure
             var storedProcedure = new List<string>();
             ISession session = SessionFactoryService.OpenSession;
             using (session)
-            {
+            {                                                       
                 var query = session.CreateSQLQuery("SELECT name FROM [dbo].[sysobjects] WHERE [XType] = 'P'AND name  NOT LIKE '%\\_%' ESCAPE '\\'");
                 var bookInfo = query.List<string>();
                 try

@@ -67,3 +67,4 @@ C:\Users\Admin\Desktop\HotelProject\HotelP\obj\Debug\HotelP.Forms.CustomerForm.r
 C:\Users\Admin\Desktop\HotelProject\HotelP\obj\Debug\HotelP.Forms.RoomsForm.resources
 C:\Users\Admin\Desktop\HotelProject\HotelP\bin\Debug\Queries\Encryption.txt
 C:\Users\Admin\Desktop\HotelProject\HotelP\bin\Debug\Queries\Triggers.txt
+C:\Users\Admin\Desktop\HotelProject\HotelP\bin\Debug\Queries\CreateTables.txt

@@ -197,7 +197,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Queries\CreateTables.txt" />
+    <EmbeddedResource Include="Queries\CreateTables.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Content Include="Queries\Decrypting.txt" />
     <EmbeddedResource Include="Queries\Triggers.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

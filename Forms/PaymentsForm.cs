@@ -51,7 +51,6 @@ namespace HotelP.Forms
             {
                 if (e.Value != null)
                 {
-
                     e.Value = PaymentsHelper.MaskCardNumberAndCVV(e.Value.ToString());
                     e.FormattingApplied = true;
                 }

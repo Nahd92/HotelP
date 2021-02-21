@@ -1,0 +1,766 @@
+﻿USE [DB_A6D32D_DhanLuisaHotel]
+GO
+/****** Object:  StoredProcedure [dbo].[ChangeroomAvaliable]    Script Date: 2021-02-21 11:25:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create PROC [dbo].[ChangeroomAvaliable]
+@checkOutDate DATETIME
+AS
+BEGIN
+SET NOCOUNT ON
+--DECLARE @checkout DATETIME
+DECLARE @Occupied int
+declare @checkout datetime
+SET @checkout = (select Booking.CheckOutDate from Booking where CheckOutDate = @checkOutDate)
+SET @Occupied = (SELECT Booking.Room_ID FROM Booking
+where Booking.CheckOutDate = @checkOutDate)
+
+
+if (@checkout = @checkOutDate)
+begin
+UPDATE Rooms
+SET Avaliable = 1
+WHERE Room_ID =  @Occupied
+end
+END
+GO
+/****** Object:  StoredProcedure [dbo].[spCheckRoomAvailability]    Script Date: 2021-02-21 11:25:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[spCheckRoomAvailability]
+@NewCheckInDate DATE,
+@NewCHeckOutDate DATE
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	SELECT r.Room_ID FROM
+		Rooms as r
+		inner join Booking as re
+		on r.Room_ID = re.Room_ID
+		WHERE
+		(@NewCheckInDate < re.CheckInDate)
+		OR
+		(@NewCheckInDate > re.CheckInDate)
+		AND 
+		(@NewCHeckOutDate < re.CheckOutDate)
+		OR
+		(@NewCHeckOutDate > re.CheckOutDate)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[spCreateCustomer]    Script Date: 2021-02-21 11:25:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+--======================================================
+-- Description: Insert record into Customer table
+--======================================================
+
+CREATE PROC [dbo].[spCreateCustomer](
+@FirstName VARCHAR(50),
+@LastName VARCHAR(50),
+@Email VARCHAR(50),
+@Address VARCHAR(100),
+@PhoneNumber VARCHAR(100),
+@ContactPerson VARCHAR(50) = 'NONE')
+AS
+
+SET NOCOUNT ON;
+BEGIN
+INSERT INTO Customer(FirstName,LastName,Email,Address,PhoneNumber,ContactPerson)
+VALUES(@FirstName,@LastName,@Email,@Address,@PhoneNumber,@ContactPerson)
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[spCreatePayments]    Script Date: 2021-02-21 11:25:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[spCreatePayments]
+@FirstName varchar(50),
+@LastName varchar(50),
+@Customer_ID INT ,
+@CreditCard varchar(30),
+
+@CardNumber VARCHAR(MAX),
+@CVV VARCHAR(MAX),
+@ExpirationDate varchar(50)
+
+AS
+DECLARE @CVV_encrypt VARBINARY(MAX)
+DECLARE @CardNumber_encrypt VARBINARY(MAX)
+
+begin transaction;
+IF NOT EXISTS ( SELECT 1 FROM Customer WHERE Customer_id = @Customer_ID)
+begin;
+throw 50005, 'Invalid CustomerID', 1
+rollback transaction;
+end;
+else
+BEGIN
+
+	OPEN SYMMETRIC KEY SymKey_test
+        DECRYPTION BY CERTIFICATE Certificate_test;
+
+        SET @CardNumber_encrypt = EncryptByKey (Key_GUID('SymKey_test'), @CardNumber)
+		SET @CVV_encrypt = EncryptByKey (Key_GUID('SymKey_test'), @CVV)
+
+	CLOSE SYMMETRIC KEY SymKey_test;
+            
+
+
+	INSERT INTO Payments(FirstName, LastName, Customer_ID,CreditCard, date, CardNumber, CVV,ExpirationDate)
+	Values (@FirstName, @LastName, @Customer_ID,@CreditCard,GETDATE(), @CardNumber_encrypt, @CVV_encrypt, @ExpirationDate)
+END
+commit tran;
+GO
+/****** Object:  StoredProcedure [dbo].[spCreateReservation]    Script Date: 2021-02-21 11:25:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[spCreateReservation](
+	/* Customer */
+	@Customer_ID int,
+	@Payments_ID int,
+	--@TotalCost int,
+	@CheckInDate datetime,
+	@CheckOutDate datetime,
+	@NumberOfGuests int,
+	@DiscountCode varchar(50) = 'No Code',
+	@NumberOfExtraBeds int = 0
+	)
+
+AS
+SET NOCOUNT ON;
+    BEGIN TRANSACTION;
+	DECLARE @Cost int
+	DECLARE @RoomRandom int
+	declare @days INT = 1
+	DECLARE @totDays INT = datediff(day, @CheckInDate, @CheckOutDate )
+	DECLARE @FirstDay INT = 0
+	DECLARE @Room_ID int
+	DECLARE @Capacity int
+	DECLARE @ExtraBeds int
+	DECLARE @CheckAvailable int = 0
+	DECLARE @TotalCostValue int 
+	DECLARE @DiscountValue varchar(50)
+	DECLARE @DiscountAmount int 
+	DECLARE @TotalCost int
+	DECLARE @ExtaBedsValue int
+ BEGIN;
+
+	WHILE (@CheckAvailable = 0)
+	BEGIN		
+		SET @RoomRandom = ROUND(((400 - 1) * RAND() + 1), 0)																					
+		SET @CheckAvailable = (SELECT Avaliable FROM Rooms WHERE Rooms.Room_ID = @RoomRandom)	
+		SET @Capacity = (SELECT CustomerMax FROM Rooms WHERE Rooms.Room_ID = @RoomRandom)								
+		IF(@NumberOfGuests > @Capacity) SET @CheckAvailable = 0
+		SET @Room_ID = @RoomRandom	
+	END;
+
+	
+					
+	Set @Cost = (SELECT Cost from Rooms WHERE Rooms.Room_ID = @Room_ID)	
+
+			
+	WHILE (@days < @totDays)
+	BEGIN
+		SET @Cost = SUM(@Cost + @Cost)
+		SET @days = @days + 1		
+	 END;
+
+
+	SET @ExtraBeds = (SELECT Amount FROM Facilities WHERE Facilities.Name = 'ExtraBeds' AND Facilities.Amount = @NumberOfExtraBeds)
+	SET @ExtaBedsValue = (SELECT Cost FROM Facilities WHERE Facilities.Amount = @ExtraBeds)
+	IF(@ExtraBeds > 3) THROW 50001, 'There are not more than 3 extra beds', 2 
+	IF(@ExtraBeds = 1) SET @Cost = SUM(@Cost + @ExtaBedsValue)
+	IF(@ExtraBeds = 2) SET @Cost = SUM(@Cost + @ExtaBedsValue)
+	IF(@ExtraBeds = 3) SET @Cost = SUM(@Cost + @ExtaBedsValue)
+
+	SET @DiscountValue = (SELECT DiscountCode FROM RoomDiscount WHERE RoomDiscount.DiscountCode =  @DiscountCode)
+	SET @DiscountAmount = (SELECT DiscountValue FROM RoomDiscount WHERE RoomDiscount.DiscountCode = @DiscountValue)
+	IF(@DiscountValue = 'SummerDiscount') SET @Cost = (@Cost - @DiscountAmount)	
+	IF(@DiscountValue = 'SpringDiscont') SET @Cost = (@Cost - @DiscountAmount)
+	IF(@DiscountValue = 'FallDiscount') SET @Cost = (@Cost - @DiscountAmount)
+	IF(@DiscountValue = 'WinterDiscount') SET @Cost = (@Cost - @DiscountAmount)
+
+	SET @TotalCost = @Cost;
+
+	update Rooms 
+	Set Avaliable = 0
+	WHERE Rooms.Room_ID = @Room_ID;
+
+	INSERT INTO Booking(Customer_ID, Room_ID, Payments_ID, CheckInDate, CheckOutDate,NumberOfGuests, BookingDate, DiscountCode, TotalCost, NumberOfExtraBeds)
+	VALUES (@Customer_ID, @Room_ID, @Payments_ID, @CheckInDate, @CheckOutDate, @NumberOfGuests, GETDATE(), @DiscountCode, @TotalCost, @NumberOfExtraBeds)
+	 
+END;
+COMMIT TRANSACTION;
+
+
+SELECT * FROM Booking
+GO
+/****** Object:  StoredProcedure [dbo].[spCreateReview]    Script Date: 2021-02-21 11:25:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[spCreateReview] 
+@note varchar(50),
+@customerid int
+as
+begin transaction;
+IF NOT EXISTS ( SELECT 1 FROM Customer WHERE Customer_id = @customerid)
+begin;
+throw 50005, 'Invalid CustomerID', 1
+rollback transaction;
+end;
+else
+BEGIN
+
+	SET NOCOUNT ON;
+	
+	INSERT INTO Reviews(Note,Customer_ID)
+VALUES(@note,@customerid)
+
+END;
+commit transaction;
+
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[spCreateStaff]    Script Date: 2021-02-21 11:25:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+--======================================================
+-- Description: Create record into staff table
+--======================================================
+CREATE PROC [dbo].[spCreateStaff]
+@FirstName VARCHAR(50),
+@LastName VARCHAR(50),
+@HotelID INT = 1,
+@Adress VARCHAR(100),
+@PhoneNumber VARCHAR(50)
+
+AS
+SET NOCOUNT ON;
+
+BEGIN
+INSERT INTO Staffs(FirstName,LastName,Hotel_ID,Address,PhoneNumber)
+VALUES(@FirstName,@LastName,@HotelID,@Adress,@PhoneNumber)
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[spDecryptPaymentsAndShowResult]    Script Date: 2021-02-21 11:25:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Description: Decrypt CardNumber and CVV
+-- =============================================
+CREATE PROCEDURE [dbo].[spDecryptPaymentsAndShowResult]
+AS
+BEGIN
+  OPEN SYMMETRIC KEY SymKey_test
+        DECRYPTION BY CERTIFICATE Certificate_test;
+
+		SELECT Payments_ID, FirstName,CardNumber AS 'Encrypted data',
+            CONVERT(varchar, DecryptByKey(CardNumber)) AS 'Decrypted Bank account number'
+            FROM Payments;
+
+		SELECT Payments_ID, FirstName,CVV AS 'Encrypted data',
+            CONVERT(varchar, DecryptByKey(CVV)) AS 'Decrypted CVV number'
+            FROM Payments;
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[spDeleteBooking]    Script Date: 2021-02-21 11:25:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+--======================================================
+-- Description: Delete record in booking by bookingId 
+--======================================================
+CREATE PROC [dbo].[spDeleteBooking]
+@BookingId INT
+AS
+SET NOCOUNT ON
+BEGIN TRAN;
+IF NOT EXISTS(SELECT 1 FROM Booking WHERE Booking_ID = @BookingId)
+	BEGIN;
+	THROW 50005, 'INVALID BOOKING ID',1
+	ROLLBACK TRAN;
+END;
+ELSE
+BEGIN
+DELETE
+FROM Booking 
+WHERE Booking_ID = @BookingId;
+END;
+COMMIT TRAN;
+GO
+/****** Object:  StoredProcedure [dbo].[spDeleteCustomer]    Script Date: 2021-02-21 11:25:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+--======================================================
+-- Description: Delete record by CustomerID 
+--======================================================
+CREATE PROC [dbo].[spDeleteCustomer]
+@CustomerID INT
+AS
+SET NOCOUNT ON
+BEGIN TRAN;
+IF NOT EXISTS(SELECT 1 FROM Customer WHERE Customer_ID = @CustomerID)
+ BEGIN; 
+   THROW 50005, 'INVALID CUSTOMER ID',1
+   ROLLBACK TRANSACTION;
+END;
+ELSE
+BEGIN
+DELETE 
+FROM Customer
+WHERE Customer_ID = @CustomerID
+END;
+COMMIT TRAN;
+GO
+/****** Object:  StoredProcedure [dbo].[spDeletePayment]    Script Date: 2021-02-21 11:25:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+--======================================================
+-- Description: Delete record by CustomerID 
+--======================================================
+CREATE PROC [dbo].[spDeletePayment]
+@CustomerID INT
+AS
+SET NOCOUNT ON
+BEGIN TRAN;
+IF NOT EXISTS(SELECT 1 FROM Customer WHERE Customer_ID = @CustomerID)
+ BEGIN; 
+   THROW 50005, 'INVALID CUSTOMER ID',1
+   ROLLBACK TRANSACTION;
+END;
+ELSE
+BEGIN
+DELETE 
+FROM payments
+WHERE Customer_ID = @CustomerID
+END;
+COMMIT TRAN;
+GO
+/****** Object:  StoredProcedure [dbo].[spDeleteReview]    Script Date: 2021-02-21 11:25:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[spDeleteReview]
+
+@Customer_ID INT
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	DELETE FROM Reviews
+	WHERE Customer_ID = @Customer_ID
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[spDeleteStaff]    Script Date: 2021-02-21 11:25:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+--======================================================
+-- Description: Delete record by StaffID
+--======================================================
+CREATE PROC [dbo].[spDeleteStaff]
+@StaffID INT
+AS
+BEGIN
+DELETE
+FROM Staffs
+WHERE ID = @StaffID
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[spDeletReservation]    Script Date: 2021-02-21 11:25:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+--=======================================================================================
+-- Description: Delete record into booking table 
+--=======================================================================================
+CREATE PROC [dbo].[spDeletReservation]
+@BookingId INT
+AS
+SET NOCOUNT ON
+BEGIN TRAN;
+IF NOT EXISTS(SELECT 1 FROM Booking WHERE Booking_ID = @BookingId)
+ BEGIN; 
+   THROW 50005, 'INVALID BOOKING ID',1
+   ROLLBACK TRANSACTION;
+END;
+ELSE
+BEGIN
+DELETE 
+FROM Booking
+WHERE Booking_ID = @BookingId
+END;
+COMMIT TRAN;
+GO
+/****** Object:  StoredProcedure [dbo].[spEncryptingInPayments]    Script Date: 2021-02-21 11:25:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Description:	Encrypting CardNumber and CVV in Payments
+-- =============================================
+CREATE PROCEDURE [dbo].[spEncryptingInPayments] 
+	
+AS
+
+BEGIN
+
+	OPEN SYMMETRIC KEY SymKey_test
+        DECRYPTION BY CERTIFICATE Certificate_test;
+		
+	UPDATE Payments
+        SET CardNumber = EncryptByKey (Key_GUID('SymKey_test'), CardNumber)
+        FROM Payments;
+		
+	UPDATE Payments
+        SET CVV = EncryptByKey (Key_GUID('SymKey_test'), CVV)
+        FROM Payments;
+		
+	CLOSE SYMMETRIC KEY SymKey_test;    
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[spGetAllBookedRoomBetweenDates]    Script Date: 2021-02-21 11:25:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[spGetAllBookedRoomBetweenDates] 
+	@startDate datetime,
+	@endDate datetime
+AS
+BEGIN
+
+select * from Rooms as ro
+where ro.Room_ID IN 
+            (
+              select re.Room_ID
+              from Booking as re 			  
+              where (CheckInDate >= @startDate and CheckInDate < @startDate)
+                or (CheckOutDate >= @endDate and CheckOutDate < @endDate)
+             )
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[spGetAllReviews]    Script Date: 2021-02-21 11:25:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[spGetAllReviews]
+
+
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+SELECT * FROM Reviews
+		
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[spGetAllStaff]    Script Date: 2021-02-21 11:25:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[spGetAllStaff]
+
+AS
+BEGIN
+SELECT * FROM Staffs
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[spGetCustomer]    Script Date: 2021-02-21 11:25:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+--======================================================
+-- Description: Get Customers by Customer Id or Name 
+--======================================================
+CREATE PROC [dbo].[spGetCustomer]
+@CustomerID INT = NULL,
+@Firstname VARCHAR(50) = NULL,
+@LastName VARCHAR(50) = NULL
+AS
+BEGIN
+     SELECT *	   
+     FROM
+	Customer
+	WHERE Customer_ID = @CustomerID OR FirstName = @Firstname OR LastName = @LastName
+END;
+
+	--EXEC spGetCustomer @Firstname = 'ANNA';
+	--drop proc spGetCustomer;
+GO
+/****** Object:  StoredProcedure [dbo].[spGetRoom]    Script Date: 2021-02-21 11:25:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+--======================================================
+-- Description: Get room by RoomID Or RoomNumber
+--======================================================
+CREATE PROC [dbo].[spGetRoom]
+@RoomID INT = NULL,
+@RoomNumber INT = NULL
+AS
+BEGIN
+SELECT *
+FROM Rooms
+WHERE Room_ID = @RoomID OR RoomNumber = @RoomNumber
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[spReadAllReviews]    Script Date: 2021-02-21 11:25:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================  
+-- Author:      Manoj Kalla  
+-- Create date: 18th Nov 2017  
+-- Description: Return all members  
+-- =============================================  
+--Store procedure name is --> stpGetAllMembers  
+CREATE PROCEDURE [dbo].[spReadAllReviews]  
+@CustomerID Int = NULL
+AS  
+BEGIN  
+    -- SET NOCOUNT ON added to prevent extra result sets from  
+    -- interfering with SELECT statements.  
+    SET NOCOUNT ON;  
+  
+    -- Select statements for procedure here  
+    Select * from Reviews WHERE @CustomerID = Customer_ID 
+END  
+GO
+/****** Object:  StoredProcedure [dbo].[spUpadatePayments]    Script Date: 2021-02-21 11:25:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+--=======================================================================================
+-- Description: Update record into Payment table KontakInfo
+--=======================================================================================
+CREATE PROC [dbo].[spUpadatePayments]
+@CustomerId Int,
+@FirstName VARCHAR(50) = NULL,
+@LastName VARCHAR(50)=NULL,
+@CreditCard VARCHAR(16) = NULL,
+@Date VARCHAR(50) = NULL,
+@Cvv VARCHAR(3) = NULL,
+@ExpirationDate VARCHAR(4)=NULL
+ AS
+SET NOCOUNT ON
+  BEGIN TRANSACTION;
+	IF NOT EXISTS(SELECT 1 FROM Customer WHERE Customer_ID = @CustomerID)
+ BEGIN; 
+   THROW 50005, 'INVALID CUSTOMER ID',1
+   ROLLBACK TRANSACTION;
+ END;
+ ELSE
+ BEGIN;
+ UPDATE Payments SET FirstName = ISNULL(@FirstName, FirstName),
+ LastName= ISNULL(@LastName, LastName),
+ CreditCard= ISNULL(@CreditCard, CreditCard ),
+ Date = ISNULL(@Date,date),
+ CVV = ISNULL(@cvv,cvv), ExpirationDate = ISNULL(@ExpirationDate, ExpirationDate)
+ WHERE Customer_ID = @CustomerID
+END;
+COMMIT TRANSACTION;
+
+GO
+/****** Object:  StoredProcedure [dbo].[spUpdateCustomer]    Script Date: 2021-02-21 11:25:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+--=======================================================================================
+-- Description: Update record into Customer table. Adress PhoneNumber & ContactPerson
+--=======================================================================================
+CREATE PROC [dbo].[spUpdateCustomer]
+@CustomerID INT ,
+@FirstName varchar(50) = Null,
+@LastName varchar(50) = Null,
+@Email varchar(50) = Null,
+@Address VARCHAR(100) =NULL,
+@PhoneNumber VARCHAR(50)= NULL,
+@ContactPerson VARCHAR(50) = NULL
+
+
+AS
+SET NOCOUNT ON;
+    BEGIN TRANSACTION;
+	IF NOT EXISTS(SELECT 1 FROM Customer WHERE Customer_ID = @CustomerID)
+ BEGIN; 
+   THROW 50005, 'INVALID CUSTOMER ID',1
+   ROLLBACK TRANSACTION;
+ END;
+ ELSE
+ BEGIN;
+ UPDATE Customer SET FirstName = ISNULL(@FirstName, FirstName), LastName = ISNULL(@LastName, LastName), 
+ Email = ISNULL(@Email, Email), Address = ISNULL(@Address, Address), PhoneNumber = ISNULL(@PhoneNumber, PhoneNumber), 
+ ContactPerson = ISNULL(@ContactPerson, ContactPerson)
+ WHERE Customer_ID = @CustomerID
+END;
+COMMIT TRANSACTION;
+GO
+/****** Object:  StoredProcedure [dbo].[spUpdateReservation]    Script Date: 2021-02-21 11:25:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Description: Update Reservation
+-- =============================================
+CREATE PROCEDURE [dbo].[spUpdateReservation]
+@Booking_ID INT,
+@CustomerID INT = NULL,
+@Payments_ID int = Null,
+@Room_ID int = Null,
+@CheckInDate varchar(50) = Null,
+@CheckOutDate VARCHAR(100) =NULL,
+@NumberOfGuests VARCHAR(50)= NULL,
+@DiscountCode VARCHAR(50) = NULL,
+@NumberOfExtraBeds int = NULL,
+@TotalCost int 
+AS
+SET NOCOUNT ON;
+   DECLARE @TotalCostValue int 
+	DECLARE @DiscountValue varchar(50)
+	DECLARE @DiscountAmount int 
+	DECLARE @Cost int
+    BEGIN TRANSACTION;
+	IF NOT EXISTS(SELECT 1 FROM Booking WHERE Booking_ID = @Booking_ID)
+ BEGIN; 
+   THROW 50005, 'INVALID Booking ID',1
+   ROLLBACK TRANSACTION;
+ END;
+ ELSE
+ BEGIN
+    --Discounts
+	SET @DiscountValue = (SELECT DiscountCode FROM RoomDiscount WHERE RoomDiscount.DiscountCode =  @DiscountCode)
+	SET @DiscountAmount = (SELECT DiscountValue FROM RoomDiscount WHERE RoomDiscount.DiscountCode = @DiscountValue)
+	IF (@DiscountValue = 'Summer')	
+		UPDATE Booking SET TotalCost  = (TotalCost - @DiscountAmount) WHERE Booking_ID = @Booking_ID
+	Else if(@DiscountValue = 'SummerDiscount')
+		UPDATE Booking SET TotalCost  = (TotalCost - @DiscountAmount) WHERE Booking_ID = @Booking_ID
+	Else if(@DiscountValue = 'SpringDiscount')
+		UPDATE Booking SET TotalCost  = (TotalCost - @DiscountAmount) WHERE Booking_ID = @Booking_ID
+	Else if(@DiscountValue = 'FallDiscount')
+		UPDATE Booking SET TotalCost  = (TotalCost - @DiscountAmount) WHERE Booking_ID = @Booking_ID
+	Else if(@DiscountValue = 'WinterDiscount')
+		UPDATE Booking SET TotalCost  = (TotalCost - @DiscountAmount) WHERE Booking_ID = @Booking_ID
+
+	
+ UPDATE Booking SET Customer_ID = ISNULL(@CustomerID, Customer_ID), Payments_ID = ISNULL(@Payments_ID, Payments_ID), 
+ Room_ID = ISNULL(@Room_ID, Room_ID), CheckInDate = ISNULL(@CheckInDate, CheckInDate), 
+ CheckOutDate = ISNULL(@CheckOutDate, CheckOutDate), NumberOfGuests = ISNULL(@NumberOfGuests, NumberOfGuests),
+ DiscountCode = ISNULL(@DiscountCode, DiscountCode), NumberOfExtraBeds = ISNULL(@NumberOfExtraBeds,NumberOfExtraBeds),
+ TotalCost = ISNULL(@TotalCost, TotalCost)
+
+ WHERE Booking_ID = @Booking_ID
+END
+COMMIT TRANSACTION;
+select * from Booking
+select * from RoomDiscount
+GO
+/****** Object:  StoredProcedure [dbo].[spUpdateReview]    Script Date: 2021-02-21 11:25:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[spUpdateReview]
+@Note varchar(50),
+@Customer_ID INT
+AS
+SET NOCOUNT ON;
+    BEGIN TRANSACTION;
+	IF NOT EXISTS(SELECT 1 FROM Customer WHERE Customer_ID = @Customer_ID)
+ BEGIN; 
+   THROW 50005, 'INVALID CUSTOMER ID',1
+   ROLLBACK TRANSACTION;
+ END;
+ ELSE
+ BEGIN;
+ UPDATE Reviews SET Note = ISNULL(@Note, Note)
+ WHERE Customer_ID = @Customer_ID
+END;
+COMMIT TRANSACTION;
+GO
+/****** Object:  StoredProcedure [dbo].[spUpdateStaff]    Script Date: 2021-02-21 11:25:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+--=======================================================================================
+-- Description: Update record into Staffs table. Adress PhoneNumber & LastName
+--=======================================================================================
+CREATE PROC [dbo].[spUpdateStaff]
+@StaffID INT,
+@Address VARCHAR(100) = NULL,
+@PhoneNumber VARCHAR(50)= NULL ,
+@LastName VARCHAR(50)= NULL 
+AS
+SET NOCOUNT ON;
+BEGIN TRAN;
+IF NOT EXISTS( SELECT 1 FROM Staffs WHERE Staffs_ID = @StaffID)
+BEGIN;
+THROW 5005,'INVALID STAFF ID' ,1
+ROLLBACK TRAN;
+END
+ELSE
+BEGIN;
+UPDATE Staffs SET Address = ISNULL(@Address, Address), PhoneNumber = ISNULL(@PhoneNumber, PhoneNumber), LastName = ISNULL(@LastName,LastName)
+WHERE Staffs_ID =@StaffID;
+END
+COMMIT TRAN;
+
+GO

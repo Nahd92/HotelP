@@ -18,8 +18,10 @@ INSERT INTO Staffs(FirstName, LastName, Address, PhoneNumber, Hotel_ID)
 VALUES ('Jörgen', 'Svensson', 'Göteborgsvägen 4', 07043312342, 1), ('Ove', 'Sundberg', 'Solsidan 51', 07043312342, 1),
 	('Lisa', 'Nilsson', 'Solsidan 3', 07043312342, 1);
 
---RoomNumber Column --
 
+
+
+--RoomNumber Column --
 
 DECLARE @a int
 SET @a = 1
